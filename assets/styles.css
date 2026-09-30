@@ -464,6 +464,79 @@ footer a:hover { color: #fff; }
   .project.full ul { grid-template-columns: 1fr; }
 }
 
+/* ── Zed-King photo + IoT strip ────────────────────────────── */
+.train-photo { margin: -34px -34px 24px; aspect-ratio: 16/8; overflow: hidden; cursor: zoom-in; border-bottom: 1px solid var(--line); }
+.train-photo img { width: 100%; height: 100%; object-fit: cover; transition: transform .7s cubic-bezier(.2,.7,.2,1); }
+.train-home:hover .train-photo img { transform: scale(1.05); }
+.iot-strip { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin: 0 0 18px; }
+.iot-strip figure { position: relative; border-radius: 12px; overflow: hidden; aspect-ratio: 4/3; cursor: zoom-in; border: 1px solid var(--line); }
+.iot-strip img { width: 100%; height: 100%; object-fit: cover; transition: transform .6s; }
+.iot-strip figure:hover img { transform: scale(1.07); }
+.iot-strip figcaption { position: absolute; left: 8px; bottom: 8px; font-size: 12px; font-weight: 600; color: #fff; background: rgba(10,33,80,.78); padding: 4px 9px; border-radius: 7px; backdrop-filter: blur(4px); }
+
+/* ── Field gallery ─────────────────────────────────────────── */
+.field { margin-top: 64px; }
+.field-head { display: flex; justify-content: space-between; align-items: flex-end; gap: 20px; flex-wrap: wrap; margin-bottom: 22px; }
+.field-head h3 { font-size: clamp(24px, 2.6vw, 32px); letter-spacing: -.03em; }
+.field-head .filters { margin: 0; }
+.gallery { display: grid; grid-template-columns: repeat(4, 1fr); grid-auto-rows: 210px; grid-auto-flow: dense; gap: 14px; }
+.g-item { position: relative; overflow: hidden; border-radius: 16px; cursor: zoom-in; background: var(--bg-alt); box-shadow: var(--shadow-sm); transition: box-shadow .35s, transform .35s cubic-bezier(.2,.7,.2,1), opacity .3s; }
+.g-item.wide { grid-column: span 2; }
+.g-item.tall { grid-row: span 2; }
+.g-item img { width: 100%; height: 100%; object-fit: cover; transition: transform .8s cubic-bezier(.2,.7,.2,1), filter .4s; }
+.g-item::after { content: ''; position: absolute; inset: 0; background: linear-gradient(180deg, transparent 45%, rgba(6,18,46,.85)); opacity: .75; transition: opacity .35s; }
+.g-item figcaption { position: absolute; left: 14px; right: 14px; bottom: 12px; z-index: 1; color: #fff; transform: translateY(6px); transition: transform .35s; }
+.g-item figcaption b { display: block; font-family: var(--font-display); font-size: 15.5px; letter-spacing: -.01em; line-height: 1.25; }
+.g-item figcaption span { font-size: 12.5px; color: #c7d3ea; }
+.g-item:hover { transform: translateY(-4px); box-shadow: var(--shadow-lg); }
+.g-item:hover img { transform: scale(1.07); }
+.g-item:hover::after { opacity: 1; }
+.g-item:hover figcaption { transform: none; }
+.g-item.hide { display: none; }
+
+/* ── Lightbox with caption ─────────────────────────────────── */
+.lightbox figure { display: flex; flex-direction: column; align-items: center; gap: 14px; max-width: min(1100px, 100%); }
+.lightbox figure img { max-height: 82vh; }
+.lightbox figcaption { color: #dfe7f7; font-size: 15px; text-align: center; }
+
+/* ── Command palette ───────────────────────────────────────── */
+.kbd-btn { display: inline-flex; align-items: center; gap: 6px; height: 42px; padding: 0 12px; border-radius: 11px; border: 1px solid var(--line-2); background: #fff; color: var(--muted); font-family: var(--font-mono); font-size: 12px; cursor: pointer; transition: all .2s; }
+.kbd-btn:hover { color: var(--text); border-color: var(--navy); }
+.kbd-btn svg { width: 15px; height: 15px; }
+kbd { font-family: var(--font-mono); font-size: 11px; padding: 2px 6px; border-radius: 5px; border: 1px solid var(--line-2); background: var(--bg); color: var(--muted); }
+.palette { position: fixed; inset: 0; z-index: 120; display: none; align-items: flex-start; justify-content: center; padding: 14vh 16px 16px; background: rgba(6,14,32,.45); backdrop-filter: blur(6px); }
+.palette.open { display: flex; }
+.palette-box { width: min(620px, 100%); background: #fff; border-radius: 18px; border: 1px solid var(--line); box-shadow: 0 40px 100px -20px rgba(6,14,32,.6); overflow: hidden; }
+.palette-top { display: flex; align-items: center; gap: 10px; padding: 14px 16px; border-bottom: 1px solid var(--line); }
+.palette-top svg { width: 18px; height: 18px; color: var(--dim); flex-shrink: 0; }
+.palette-top input { flex: 1; border: 0; outline: 0; font: 500 16px var(--font-body); color: var(--text); background: none; }
+.palette-list { list-style: none; max-height: 52vh; overflow: auto; padding: 8px; }
+.palette-list li { display: flex; align-items: center; gap: 12px; padding: 11px 12px; border-radius: 10px; cursor: pointer; font-size: 14.5px; color: var(--text); }
+.palette-list li .pi { width: 30px; height: 30px; border-radius: 8px; display: grid; place-items: center; background: var(--bg-alt); color: var(--navy); font-family: var(--font-mono); font-size: 12px; flex-shrink: 0; }
+.palette-list li small { margin-left: auto; color: var(--dim); font-family: var(--font-mono); font-size: 11.5px; }
+.palette-list li.sel { background: var(--navy); color: #fff; }
+.palette-list li.sel .pi { background: rgba(255,255,255,.14); color: #fff; }
+.palette-list li.sel small { color: #aebbd6; }
+.palette-foot { display: flex; gap: 14px; padding: 10px 16px; border-top: 1px solid var(--line); font-size: 12px; color: var(--dim); }
+.toast { position: fixed; left: 50%; bottom: 28px; transform: translate(-50%, 20px); opacity: 0; background: var(--navy); color: #fff; padding: 11px 18px; border-radius: 12px; font-size: 14px; font-weight: 500; z-index: 130; transition: all .3s; pointer-events: none; box-shadow: var(--shadow-lg); }
+.toast.show { opacity: 1; transform: translate(-50%, 0); }
+
+@media (max-width: 1024px) {
+  .gallery { grid-template-columns: repeat(3, 1fr); }
+}
+@media (max-width: 720px) {
+  .gallery { grid-template-columns: repeat(2, 1fr); grid-auto-rows: 150px; gap: 10px; }
+  .g-item.wide { grid-column: span 2; }
+  .g-item figcaption b { font-size: 13.5px; }
+  .g-item figcaption span { display: none; }
+  .iot-strip { grid-template-columns: 1fr 1fr; }
+  .iot-strip figure:first-child { grid-column: span 2; }
+  .train-photo { margin: -34px -34px 20px; }
+  .kbd-btn { display: none; }
+  .field-head .filters { overflow-x: auto; flex-wrap: nowrap; max-width: 100%; }
+  .field-head .filter { white-space: nowrap; }
+}
+
 /* ── Responsive ────────────────────────────────────────────── */
 @media (max-width: 1080px) {
   .nav-links { display: none; }

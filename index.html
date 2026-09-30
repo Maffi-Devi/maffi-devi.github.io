@@ -41,7 +41,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Inter+Tight:wght@500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/styles.css?v=6">
+<link rel="stylesheet" href="assets/styles.css?v=7">
 
 <script type="application/ld+json">
 {
@@ -169,7 +169,8 @@
       <a href="#recognition">Recognition</a>
     </div>
     <div class="nav-cta">
-      <a href="assets/Maffi_Devi_Resume.pdf" class="btn" target="_blank" rel="noopener" aria-label="Download résumé">
+      <button class="kbd-btn" id="kbdBtn" aria-label="Open command palette"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg><span id="kbdHint">Ctrl K</span></button>
+      <a href="assets/Maffi_Bhall_Resume.pdf" class="btn" target="_blank" rel="noopener" aria-label="Download résumé">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12m0 0-4-4m4 4 4-4M5 21h14"/></svg><span>Résumé</span>
       </a>
       <a href="#contact" class="btn btn-primary"><span>Let's talk</span>
@@ -258,7 +259,7 @@
       <article class="card hover pillar reveal d1">
         <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="7" width="16" height="12" rx="3"/><path d="M12 3v4M9 12h.01M15 12h.01M9 16h6"/></svg></div>
         <h3>Agents &amp; Automation</h3>
-        <p>Multi-agent content systems, AI chatbots for web &amp; WhatsApp, and calling agents that do real work on a schedule — researched, written and published with no human in the loop.</p>
+        <p>Multi-agent content systems and AI chatbots for web &amp; WhatsApp that do real work on a schedule — researched, written and published with no human in the loop.</p>
         <div class="chips"><span class="chip">Groq · LLaMA 3.3</span><span class="chip">Gemini</span><span class="chip">GitHub Actions</span><span class="chip">SEO · AEO · GEO</span></div>
       </article>
       <article class="card hover pillar reveal d2">
@@ -458,6 +459,11 @@
         <h3>IoT Lab Builds</h3>
         <p>Working hardware-software prototypes designed and built with students — each one a teaching capstone.</p>
         <ul><li>Smart Home automation</li><li>Ultrasonic Radar System</li><li>Smart City model</li><li>Automated waste management</li></ul>
+        <div class="iot-strip">
+          <figure data-full="assets/img/field/iot-military-base-project-maffi-bhall-students.webp" data-cap="Students presenting their IoT 'Military Base' model"><img src="assets/img/field/iot-military-base-project-maffi-bhall-students.webp" alt="Maffi Bhall with students and their Arduino IoT military base project" loading="lazy"><figcaption>Military-base security model</figcaption></figure>
+          <figure data-full="assets/img/field/iot-uno-voice-system-project.jpg" data-cap="Arduino UNO voice-control system built in the Zed-King lab"><img src="assets/img/field/iot-uno-voice-system-project.jpg" alt="Arduino UNO voice system IoT project board" loading="lazy"><figcaption>UNO voice-control system</figcaption></figure>
+          <figure data-full="assets/img/field/iot-smart-dustbin-project.jpg" data-cap="Students demonstrating an automated smart dustbin"><img src="assets/img/field/iot-smart-dustbin-project.jpg" alt="Students demonstrating an automated smart dustbin IoT project" loading="lazy"><figcaption>Automated smart dustbin</figcaption></figure>
+        </div>
         <div class="stack">Arduino · C/C++ · PlatformIO · Sensors &amp; actuators</div>
       </article>
     </div>
@@ -503,6 +509,7 @@
 
     <div class="train-grid">
       <article class="card hover train-home reveal">
+        <figure class="train-photo" data-full="assets/img/field/zedking-computer-lab-class-maffi-bhall.jpg" data-cap="Computer lab class at Zed-King Group of Institutions, Kaithal"><img src="assets/img/field/zedking-computer-lab-class-maffi-bhall.jpg" alt="Maffi Bhall teaching a computer lab class at Zed-King Group of Institutions, Kaithal" loading="lazy" width="1400" height="1050"></figure>
         <div class="tag-row"><span class="tag">Home base · since 2022</span></div>
         <h3>Zed-King Group of Institutions, Kaithal</h3>
         <p>Where most of my 2,000+ students come from. I've run AI and cyber security sessions here again and again — generative AI tools, prompt engineering, safe internet use and scam awareness — alongside Python, web development and IoT labs.</p>
@@ -531,7 +538,7 @@
       <article class="card hover venue reveal d2">
         <div class="p-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="16" rx="2"/><path d="M9 9h6v6H9z"/></svg></div>
         <h3>Polytechnics</h3>
-        <p>Technical seminars on AI, cyber security and IoT at government polytechnics in the Kaithal region, including Govt. Polytechnic, Shergarh.</p>
+        <p>Technical seminars on AI, cyber security and IoT at government polytechnics in the Kaithal region, including a cyber security seminar at Govt. Polytechnic, Shergarh.</p>
       </article>
     </div>
 
@@ -544,6 +551,29 @@
       </div>
       <a href="mailto:bhallmaffi@gmail.com?subject=Workshop%20invitation" class="btn btn-navy">Invite me for a workshop
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></a>
+    </div>
+
+    <div class="field reveal" id="field">
+      <div class="field-head">
+        <div><div class="eyebrow" style="margin-bottom:8px">In the field</div><h3>Real rooms, real students.</h3></div>
+        <div class="filters" role="tablist" aria-label="Filter photos">
+          <button class="filter on" data-gf="all">All</button><button class="filter" data-gf="school">Schools</button><button class="filter" data-gf="college">Colleges &amp; NSS</button><button class="filter" data-gf="iti">ITI</button><button class="filter" data-gf="poly">Polytechnic</button><button class="filter" data-gf="zedking">Zed-King</button>
+        </div>
+      </div>
+      <div class="gallery" id="gallery">
+        <figure class="g-item wide" data-g="poly" data-full="assets/img/field/polytechnic-cyber-security-seminar-maffi-bhall.jpg" data-cap="Cybersecurity: Protecting Your Digital Assets — Govt. Polytechnic, Shergarh"><img src="assets/img/field/polytechnic-cyber-security-seminar-maffi-bhall.jpg" alt="Maffi Bhall delivering a cyber security seminar at Govt. Polytechnic, Shergarh" loading="lazy"><figcaption><b>Cybersecurity: Protecting Your Digital Assets</b><span>Govt. Polytechnic, Shergarh</span></figcaption></figure>
+        <figure class="g-item tall" data-g="college" data-full="assets/img/field/nss-state-camp-speaker-maffi-bhall.jpg" data-cap="Special Guest Speaker — State Level NSS Camp, Kaithal"><img src="assets/img/field/nss-state-camp-speaker-maffi-bhall.jpg" alt="Maffi Bhall speaking on cyber security at the State Level NSS Camp" loading="lazy"><figcaption><b>Special Guest Speaker</b><span>State Level NSS Camp, Kaithal</span></figcaption></figure>
+        <figure class="g-item " data-g="iti" data-full="assets/img/field/iti-hands-on-cyber-safety-training-maffi-bhall.jpg" data-cap="Hands-on cyber-safety session — ITI students, Kaithal region"><img src="assets/img/field/iti-hands-on-cyber-safety-training-maffi-bhall.jpg" alt="Maffi Bhall guiding ITI students hands-on on their phones during a cyber safety session" loading="lazy"><figcaption><b>Hands-on cyber-safety session</b><span>ITI students, Kaithal region</span></figcaption></figure>
+        <figure class="g-item tall" data-g="school" data-full="assets/img/field/cbse-ai-workshop-keynote-maffi-bhall.jpg" data-cap="Keynote — CBSE AI Workshop — Computational Thinking &amp; AI"><img src="assets/img/field/cbse-ai-workshop-keynote-maffi-bhall.jpg" alt="Maffi Bhall giving the keynote at a CBSE Computational Thinking and AI workshop" loading="lazy"><figcaption><b>Keynote — CBSE AI Workshop</b><span>Computational Thinking &amp; AI</span></figcaption></figure>
+        <figure class="g-item " data-g="college" data-full="assets/img/field/nss-state-camp-cyber-safety-workshop.jpg" data-cap="200+ NSS volunteers trained — Deepfakes &amp; digital fraud"><img src="assets/img/field/nss-state-camp-cyber-safety-workshop.jpg" alt="NSS volunteers attending the cyber safety workshop by Maffi Bhall" loading="lazy"><figcaption><b>200+ NSS volunteers trained</b><span>Deepfakes &amp; digital fraud</span></figcaption></figure>
+        <figure class="g-item wide" data-g="iti" data-full="assets/img/field/iti-ai-cyber-security-seminar-maffi-bhall.jpg" data-cap="AI &amp; cyber security seminar — ITI auditorium"><img src="assets/img/field/iti-ai-cyber-security-seminar-maffi-bhall.jpg" alt="Maffi Bhall presenting an AI and cyber security seminar to ITI students" loading="lazy"><figcaption><b>AI &amp; cyber security seminar</b><span>ITI auditorium</span></figcaption></figure>
+        <figure class="g-item " data-g="school" data-full="assets/img/field/cbse-ai-workshop-chief-guest-maffi-bhall.jpg" data-cap="Honoured as Chief Guest — Aryan International School, Kaithal"><img src="assets/img/field/cbse-ai-workshop-chief-guest-maffi-bhall.jpg" alt="Maffi Bhall honoured as chief guest at the CBSE AI workshop" loading="lazy"><figcaption><b>Honoured as Chief Guest</b><span>Aryan International School, Kaithal</span></figcaption></figure>
+        <figure class="g-item " data-g="poly" data-full="assets/img/field/polytechnic-smartboard-session-maffi-bhall.jpg" data-cap="Live demo on the smart board — Govt. Polytechnic, Shergarh"><img src="assets/img/field/polytechnic-smartboard-session-maffi-bhall.jpg" alt="Maffi Bhall running a live demo on the smart board at Govt. Polytechnic, Shergarh" loading="lazy"><figcaption><b>Live demo on the smart board</b><span>Govt. Polytechnic, Shergarh</span></figcaption></figure>
+        <figure class="g-item " data-g="school" data-full="assets/img/field/press-cbse-ai-workshop-maffi-bhall.jpg" data-cap="Covered in the local press — CBSE AI workshop, Kaithal"><img src="assets/img/field/press-cbse-ai-workshop-maffi-bhall.jpg" alt="Hindi newspaper coverage of the CBSE AI workshop with Maffi Bhall as chief guest" loading="lazy"><figcaption><b>Covered in the local press</b><span>CBSE AI workshop, Kaithal</span></figcaption></figure>
+        <figure class="g-item wide" data-g="college" data-full="assets/img/field/nss-state-camp-honour-maffi-bhall.jpg" data-cap="Honoured at the state camp — Dept. of Higher Education, Haryana"><img src="assets/img/field/nss-state-camp-honour-maffi-bhall.jpg" alt="Maffi Bhall honoured at the State Level NSS Camp by the Department of Higher Education, Haryana" loading="lazy"><figcaption><b>Honoured at the state camp</b><span>Dept. of Higher Education, Haryana</span></figcaption></figure>
+        <figure class="g-item " data-g="zedking" data-full="assets/img/field/zedking-certificate-distribution-maffi-bhall.jpg" data-cap="Certificate day for my students — Zed-King, Kaithal"><img src="assets/img/field/zedking-certificate-distribution-maffi-bhall.jpg" alt="Maffi Bhall presenting certificates to students at Zed-King Group of Institutions" loading="lazy"><figcaption><b>Certificate day for my students</b><span>Zed-King, Kaithal</span></figcaption></figure>
+        <figure class="g-item " data-g="zedking" data-full="assets/img/field/dynamic-educator-award-ceremony-maffi-bhall.jpg" data-cap="Dynamic Educator Award — Zed-King 20th Foundation Day"><img src="assets/img/field/dynamic-educator-award-ceremony-maffi-bhall.jpg" alt="Maffi Bhall receiving the Dynamic Educator and Creative Mind Award" loading="lazy"><figcaption><b>Dynamic Educator Award</b><span>Zed-King 20th Foundation Day</span></figcaption></figure>
+      </div>
     </div>
   </div>
 </section>
@@ -568,7 +598,7 @@
         <ul>
           <li>Design, code and deliver every client project: custom websites, databases and secure admin dashboards.</li>
           <li>Built and published DigitalKawach.ai, an AI-powered scam-detection and digital-protection app.</li>
-          <li>Ship chatbots, voice assistants and AI calling agents for client businesses.</li>
+          <li>Ship AI chatbots, voice assistants and workflow automation for client businesses.</li>
           <li>Run technical SEO, AEO/GEO and Google Ads growth — 5.0★ across 29 Google reviews.</li>
         </ul>
       </div>
@@ -756,7 +786,7 @@
       <a href="mailto:bhallmaffi@gmail.com" class="btn btn-primary">bhallmaffi@gmail.com
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></a>
       <a href="https://wa.me/917497008710" class="btn" target="_blank" rel="noopener">WhatsApp +91 74970 08710</a>
-      <a href="assets/Maffi_Devi_Resume.pdf" class="btn" target="_blank" rel="noopener">Download résumé</a>
+      <a href="assets/Maffi_Bhall_Resume.pdf" class="btn" target="_blank" rel="noopener">Download résumé</a>
     </div>
     <div class="contact-links">
       <a class="card hover c-link reveal" href="https://www.linkedin.com/in/bhallmaffi/" target="_blank" rel="noopener"><div class="k">LinkedIn</div><div class="v">in/bhallmaffi</div></a>
@@ -774,8 +804,17 @@
   </div>
 </footer>
 
-<div class="lightbox" id="lightbox" role="dialog" aria-label="Certificate preview"><img alt=""></div>
+<div class="lightbox" id="lightbox" role="dialog" aria-label="Image preview"><figure><img alt=""><figcaption></figcaption></figure></div>
 
-<script src="assets/main.js?v=6"></script>
+<div class="palette" id="palette" role="dialog" aria-modal="true" aria-label="Command palette">
+  <div class="palette-box">
+    <div class="palette-top"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg><input id="paletteInput" type="text" placeholder="Jump to a section or run a command…" autocomplete="off" spellcheck="false" aria-label="Search commands"><kbd>Esc</kbd></div>
+    <ul class="palette-list" id="paletteList" role="listbox"></ul>
+    <div class="palette-foot"><span><kbd>↑</kbd> <kbd>↓</kbd> navigate</span><span><kbd>Enter</kbd> run</span></div>
+  </div>
+</div>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script src="assets/main.js?v=7"></script>
 </body>
 </html>

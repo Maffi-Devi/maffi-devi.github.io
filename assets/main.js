@@ -73,21 +73,89 @@
   }));
 
   /* ── Project filters ── */
-  $$('.filter').forEach(btn => btn.addEventListener('click', () => {
-    $$('.filter').forEach(b => b.classList.toggle('on', b === btn));
+  $$('[data-f]').forEach(btn => btn.addEventListener('click', () => {
+    $$('[data-f]').forEach(b => b.classList.toggle('on', b === btn));
     const f = btn.dataset.f;
     $$('#projects .project').forEach(p => {
       p.classList.toggle('hide', f !== 'all' && !p.dataset.cat.split(' ').includes(f));
     });
   }));
 
-  /* ── Certificate lightbox ── */
-  const lb = $('#lightbox'), lbImg = $('img', lb);
-  $$('.award').forEach(a => a.addEventListener('click', () => {
-    lbImg.src = a.dataset.full; lbImg.alt = $('img', a).alt; lb.classList.add('open');
+  /* ── Field gallery filters ── */
+  $$('[data-gf]').forEach(btn => btn.addEventListener('click', () => {
+    $$('[data-gf]').forEach(b => b.classList.toggle('on', b === btn));
+    const f = btn.dataset.gf;
+    $$('#gallery .g-item').forEach(g => g.classList.toggle('hide', f !== 'all' && g.dataset.g !== f));
+  }));
+
+  /* ── Lightbox for every zoomable image ── */
+  const lb = $('#lightbox'), lbImg = $('img', lb), lbCap = $('figcaption', lb);
+  $$('[data-full]').forEach(el => el.addEventListener('click', () => {
+    const img = $('img', el);
+    lbImg.src = el.dataset.full; lbImg.alt = img ? img.alt : '';
+    lbCap.textContent = el.dataset.cap || ($('h3', el) || {}).textContent || '';
+    lb.classList.add('open');
   }));
   lb.addEventListener('click', () => lb.classList.remove('open'));
-  addEventListener('keydown', e => { if (e.key === 'Escape') lb.classList.remove('open'); });
+
+  /* ── Command palette (Ctrl/⌘ + K) ── */
+  const toast = msg => {
+    const t = $('#toast'); t.textContent = msg; t.classList.add('show');
+    clearTimeout(toast.timer); toast.timer = setTimeout(() => t.classList.remove('show'), 2200);
+  };
+  const go = sel => () => $(sel).scrollIntoView({ behavior: reduceMotion ? 'auto' : 'smooth' });
+  const open = url => () => window.open(url, '_blank', 'noopener');
+  const COMMANDS = [
+    ['#', 'About Maffi Bhall', 'section', go('#about')],
+    ['#', 'A&N Web Services', 'section', go('#founder')],
+    ['#', 'Selected work', 'section', go('#work')],
+    ['>', 'Try the scam scanner', 'lab', () => { go('#lab')(); setTimeout(() => $('#scanInput').focus({ preventScroll: true }), 600); }],
+    ['#', 'Training & seminars', 'section', go('#training')],
+    ['#', 'Workshop photos', 'gallery', go('#field')],
+    ['#', 'Experience', 'section', go('#experience')],
+    ['#', 'Recognition & speaking', 'section', go('#recognition')],
+    ['#', 'FAQ', 'section', go('#faq')],
+    ['@', 'Copy email address', 'bhallmaffi@gmail.com', () => {
+      (navigator.clipboard ? navigator.clipboard.writeText('bhallmaffi@gmail.com') : Promise.reject())
+        .then(() => toast('Email copied — bhallmaffi@gmail.com'), () => toast('bhallmaffi@gmail.com'));
+    }],
+    ['↗', 'Chat on WhatsApp', '+91 74970 08710', open('https://wa.me/917497008710')],
+    ['↓', 'Download résumé', 'PDF', open('assets/Maffi_Bhall_Resume.pdf')],
+    ['↗', 'LinkedIn', 'in/bhallmaffi', open('https://www.linkedin.com/in/bhallmaffi/')],
+    ['↗', 'GitHub', 'Maffi-Devi', open('https://github.com/Maffi-Devi')],
+    ['↗', 'A&N Web Services', 'anwebservice.com', open('https://www.anwebservice.com')],
+    ['↗', 'DigitalKawach', 'digitalkawach.com', open('https://digitalkawach.com')],
+  ];
+  const pal = $('#palette'), palIn = $('#paletteInput'), palList = $('#paletteList');
+  let shown = [], sel = 0, lastFocus = null;
+  const renderPal = () => {
+    const q = palIn.value.trim().toLowerCase();
+    shown = COMMANDS.filter(c => (c[1] + ' ' + c[2]).toLowerCase().includes(q));
+    sel = Math.min(sel, Math.max(shown.length - 1, 0));
+    palList.innerHTML = shown.length
+      ? shown.map((c, i) => `<li role="option" data-i="${i}" class="${i === sel ? 'sel' : ''}" aria-selected="${i === sel}"><span class="pi">${c[0]}</span>${esc(c[1])}<small>${esc(c[2])}</small></li>`).join('')
+      : '<li style="cursor:default;color:var(--dim)">No matches</li>';
+  };
+  const openPal = () => { lastFocus = document.activeElement; pal.classList.add('open'); palIn.value = ''; sel = 0; renderPal(); palIn.focus(); };
+  const closePal = () => { pal.classList.remove('open'); if (lastFocus) lastFocus.focus({ preventScroll: true }); };
+  const runPal = i => { const c = shown[i]; if (!c) return; closePal(); nav.classList.remove('open'); c[3](); };
+  $('#kbdBtn').addEventListener('click', openPal);
+  if (/Mac|iPhone|iPad/.test(navigator.platform)) $('#kbdHint').textContent = '⌘ K';
+  palIn.addEventListener('input', () => { sel = 0; renderPal(); });
+  palList.addEventListener('click', e => { const li = e.target.closest('li[data-i]'); if (li) runPal(+li.dataset.i); });
+  palList.addEventListener('mousemove', e => {
+    const li = e.target.closest('li[data-i]');
+    if (li && +li.dataset.i !== sel) { sel = +li.dataset.i; renderPal(); }
+  });
+  pal.addEventListener('click', e => { if (e.target === pal) closePal(); });
+  addEventListener('keydown', e => {
+    if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'k') { e.preventDefault(); pal.classList.contains('open') ? closePal() : openPal(); return; }
+    if (e.key === 'Escape') { lb.classList.remove('open'); if (pal.classList.contains('open')) closePal(); return; }
+    if (!pal.classList.contains('open')) return;
+    if (e.key === 'ArrowDown') { e.preventDefault(); sel = (sel + 1) % Math.max(shown.length, 1); renderPal(); palList.children[sel]?.scrollIntoView({ block: 'nearest' }); }
+    if (e.key === 'ArrowUp') { e.preventDefault(); sel = (sel - 1 + shown.length) % Math.max(shown.length, 1); renderPal(); palList.children[sel]?.scrollIntoView({ block: 'nearest' }); }
+    if (e.key === 'Enter') { e.preventDefault(); runPal(sel); }
+  });
 
   /* ── Scam scanner: rule layer of the DigitalKawach engine ── */
   const RULES = [
