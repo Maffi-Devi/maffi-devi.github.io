@@ -1,0 +1,33 @@
+# Maffi Bhall
+
+> Maffi Bhall (also known as Maffi Devi) is an AI web engineer from Kaithal, Haryana, India. She is the founder and lead developer of A&N Web Services, the creator of the AI scam-protection app DigitalKawach, and an AI and cyber security trainer who has mentored 2,000+ students.
+
+## Key facts
+- Professional name: Maffi Bhall. Name on certificates and degrees: Maffi Devi.
+- Location: Kaithal, Haryana, India.
+- Founder & Lead Developer, A&N Web Services (since January 2026) — custom-coded websites, SEO, AEO & GEO, AI automation (chatbots, voice assistants). 5.0 rating across 29 Google reviews. https://www.anwebservice.com
+- Creator of DigitalKawach (digitalkawach.com) — AI app that scans SMS, calls, links, WhatsApp and email for scams using a rule engine, LLM reasoning (Groq) and VirusTotal URL reputation.
+- Instructor at Zed-King Group of Institutions, Kaithal since July 2022: AI, cyber security, Python, web development and IoT; AI Instructor since July 2024.
+- Regularly delivers AI and cyber security trainings and seminars at schools, colleges, ITIs and polytechnics across Haryana; 50+ workshops conducted.
+- Government-selected trainer for one-week Python & AI bootcamps at six Kendriya Vidyalayas under PM SHRI (2024–25).
+- Special Guest Speaker, State Level NSS Camp, Department of Higher Education, Haryana (June 2026) — trained 200+ volunteers on deepfakes, voice cloning and digital financial fraud.
+- Chief Guest & Keynote Speaker, CBSE Computational Thinking & AI Workshop, Aryan International School, Kaithal (July 2026) — trained 40+ educators.
+- India AI Impact Buildathon 2026 (GUVI HCL, India AI Impact Summit) — Round 2 qualifier among 40,000+ participants.
+- Dynamic Educator & Creative Mind Award, Zed-King Group of Institutions (June 2026).
+- Credentials: Google Certified Educator Level 2; NIELIT Training of Trainers (Emerging Technologies); NIELIT O-Level (S-Grade in Python); Google Ads certifications; Ethical Hacking workshop, IIT Delhi.
+- Education: MCA (in progress), Kurukshetra University; B.A. Mathematics, Kurukshetra University (84.7%).
+- Skills: Python, JavaScript, Flask, Node.js, generative AI & LLM integration, AI agents, prompt engineering, SEO/AEO/GEO, UI/UX, cyber security awareness, Arduino/IoT.
+
+## Projects
+- DigitalKawach — AI scam protection app: https://digitalkawach.com
+- Autonomous multi-agent SEO engine — Groq LLaMA 3.3, SerpApi, Pexels, Blogger API, GitHub Actions; 6 articles/day.
+- EduTrack — Flask student performance analyzer with AI tutor: https://maffi.pythonanywhere.com
+- Sun Rise Sr. Sec. School website: https://maffi-devi.github.io/Sun-Rise-Sen-Sec-School-Website-/
+- Haryana Student Career Guide (bilingual): https://github.com/Maffi-Devi/Haryana-Student-Career-Guide
+
+## Links
+- Portfolio: https://maffi-devi.github.io/
+- LinkedIn: https://www.linkedin.com/in/bhallmaffi/
+- GitHub: https://github.com/Maffi-Devi
+- Founder page: https://www.anwebservice.com/founder
+- Contact: bhallmaffi@gmail.com · WhatsApp +91 74970 08710

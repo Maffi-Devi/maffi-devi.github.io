@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+  <url>
+    <loc>https://maffi-devi.github.io/</loc>
+    <lastmod>2026-09-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>1.0</priority>
+    <image:image><image:loc>https://maffi-devi.github.io/assets/img/maffi-bhall.webp</image:loc><image:title>Maffi Bhall at the India AI Impact Summit 2026</image:title></image:image>
+    <image:image><image:loc>https://maffi-devi.github.io/assets/img/maffi-devi.jpg</image:loc><image:title>Maffi Bhall — AI Web Engineer, Founder of A&amp;N Web Services</image:title></image:image>
+  </url>
+</urlset>
