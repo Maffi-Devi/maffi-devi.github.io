@@ -20,7 +20,8 @@
 
 ## Projects
 - DigitalKawach — AI scam protection app: https://digitalkawach.com
-- Autonomous multi-agent SEO engine — Groq LLaMA 3.3, SerpApi, Pexels, Blogger API, GitHub Actions; 6 articles/day.
+- Zed-King Institute of Fire & Safety — currently building the website and handling all SEO: https://zedkingfire.com
+- Autonomous multi-agent SEO engine (built for Zed-King Institute of Fire & Safety and A&N Web Services) — Groq LLaMA 3.3, SerpApi, Pexels, Blogger API, GitHub Actions; 6 articles/day.
 - EduTrack — Flask student performance analyzer with AI tutor: https://maffi.pythonanywhere.com
 - Sun Rise Sr. Sec. School website: https://maffi-devi.github.io/Sun-Rise-Sen-Sec-School-Website-/
 - Haryana Student Career Guide (bilingual): https://github.com/Maffi-Devi/Haryana-Student-Career-Guide

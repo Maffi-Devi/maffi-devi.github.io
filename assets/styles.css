@@ -107,6 +107,21 @@ section { padding: 88px 0; }
 .portrait { padding: 10px; }
 .portrait img { width: 100%; aspect-ratio: 4/5; object-fit: cover; object-position: 50% 28%; border-radius: 8px; }
 .portrait figcaption { font-size: 13.5px; color: var(--muted); padding: 12px 6px 4px; line-height: 1.45; }
+.portrait-wrap { position: relative; }
+.cred-card { position: absolute; z-index: 2; display: flex; align-items: center; gap: 10px; padding: 10px 14px 10px 10px; background: #fff; border: 1px solid var(--line); border-radius: 12px; box-shadow: var(--shadow-md); font-size: 12.5px; line-height: 1.3; color: var(--muted); white-space: nowrap; animation: cred-in .6s ease both, cred-float 6s ease-in-out infinite; transition: border-color .25s, box-shadow .25s; }
+.cred-card:hover { border-color: var(--navy); animation-play-state: paused; }
+.cred-card b { display: block; font-size: 13.5px; font-weight: 600; color: var(--text); }
+.cred-card i { width: 34px; height: 34px; border-radius: 9px; display: grid; place-items: center; background: var(--link-soft); color: var(--navy); flex-shrink: 0; }
+.cred-card i svg { width: 18px; height: 18px; }
+.cred-card.c1 { top: 17%; left: -72px; animation-delay: .3s, .9s; }
+.cred-card.c2 { top: 3%; right: -24px; animation-delay: .45s, 2.4s; }
+.cred-card.c3 { bottom: 30%; left: -72px; animation-delay: .6s, 3.9s; }
+.cred-card.c4 { bottom: 9%; right: -24px; animation-delay: .75s, 5.4s; }
+.cred-card.c2 i { background: var(--warn-soft); color: var(--warn); }
+.cred-card.c3 i { background: var(--ok-soft); color: var(--ok); }
+.cred-card.c4 i { background: var(--danger-soft); color: var(--accent); }
+@keyframes cred-in { from { opacity: 0; scale: .92; } }
+@keyframes cred-float { 50% { translate: 0 -7px; } }
 
 /* ── Key numbers ───────────────────────────────────────────── */
 .metrics { padding: 0; }
@@ -306,7 +321,9 @@ footer a:hover { color: #fff; }
 @media (max-width: 960px) {
   .hero-grid, .about-grid, .featured, .demo, .train-grid, .edu-grid, .project.wide { grid-template-columns: 1fr; }
   .hero-grid { gap: 40px; }
-  .portrait { max-width: 400px; }
+  .portrait-wrap { max-width: 400px; }
+  .cred-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 12px; }
+  .cred-card { position: static; white-space: normal; box-shadow: var(--shadow-sm); animation: none; padding: 10px; }
   .about-grid { gap: 32px; }
   .areas { grid-template-columns: 1fr; margin-top: 32px; }
   .featured-visual { border-left: 0; border-top: 1px solid var(--line); }
