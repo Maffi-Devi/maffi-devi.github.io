@@ -32,6 +32,55 @@
   }, { rootMargin: '-45% 0px -50% 0px' });
   $$('header[id], section[id]').forEach(s => sectionObs.observe(s));
 
+  /* ── Hero text: letter reveal for the name, rotating role, word-by-word intro ── */
+  if (!reduceMotion) {
+    const h1 = $('.hero h1');
+    if (h1) {
+      let i = 0;
+      const words = h1.textContent.trim().split(/\s+/);
+      h1.setAttribute('aria-label', h1.textContent.trim());
+      h1.innerHTML = words.map(w => `<span class="wd" aria-hidden="true">${[...w].map(c => `<span class="ch" style="--i:${i++}">${c}</span>`).join('')}</span>`).join(' ') + '<span class="dot" aria-hidden="true"></span>';
+      h1.classList.add('split');
+    }
+
+    const lede = $('.hero .lede');
+    if (lede) {
+      let i = 0;
+      const walk = node => [...node.childNodes].forEach(n => {
+        if (n.nodeType === 1) return walk(n);
+        if (n.nodeType !== 3 || !n.textContent.trim()) return;
+        const frag = document.createDocumentFragment();
+        n.textContent.split(/(\s+)/).forEach(part => {
+          if (!part.trim()) return frag.appendChild(document.createTextNode(part ? ' ' : ''));
+          const s = document.createElement('span');
+          s.className = 'w'; s.style.setProperty('--i', i++); s.textContent = part;
+          frag.appendChild(s);
+        });
+        n.replaceWith(frag);
+      });
+      walk(lede);
+      lede.classList.add('split');
+    }
+
+    const role = $('#role');
+    if (role && role.dataset.roles) {
+      const roles = role.dataset.roles.split('|');
+      role.setAttribute('aria-label', role.textContent.replace(/\s+/g, ' ').trim());
+      role.innerHTML = `<span class="rot-list" aria-hidden="true">${roles.map(r => `<span class="rot-item">${r}</span>`).join('')}</span>`;
+      role.classList.add('rot');
+      const items = $$('.rot-item', role);
+      let cur = 0;
+      setTimeout(() => items[0].classList.add('on'), 350);
+      setInterval(() => {
+        const prev = items[cur];
+        cur = (cur + 1) % items.length;
+        prev.classList.remove('on'); prev.classList.add('out');
+        items[cur].classList.remove('out'); items[cur].classList.add('on');
+        setTimeout(() => prev.classList.remove('out'), 800);
+      }, 2600);
+    }
+  }
+
   /* ── Reveal on scroll, staggered within each row of siblings ── */
   const revealObs = new IntersectionObserver(entries => {
     const shown = entries.filter(e => e.isIntersecting);
@@ -80,7 +129,7 @@
 
   /* ── Photo gallery: category filters and "show all" ── */
   const gallery = $('#gallery'), filters = $('#filters'), moreBtn = $('#moreBtn');
-  const FIRST = 12;
+  const FIRST = 13;
   let expanded = false, current = 'all';
   if (gallery) {
     const shots = $$('.shot', gallery);
