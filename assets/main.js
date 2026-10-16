@@ -120,52 +120,110 @@
   addEventListener('load', () => { layoutWork(); onScroll(); });
   layoutWork(); onScroll();
 
-  /* ── Photo rows: duplicate once so the marquee loops seamlessly ── */
-  if (!reduceMotion) {
-    $$('.photo-row').forEach(row => $$('figure', row).forEach(f => {
-      const c = f.cloneNode(true); c.setAttribute('aria-hidden', 'true'); c.dataset.clone = '1'; row.appendChild(c);
-    }));
+  addEventListener('keydown', e => { if (e.key === 'Escape' && header.classList.contains('open')) setMenu(false); });
+
+  /* ── What I do: accordion cards ── */
+  $$('.wid').forEach(card => {
+    const btn = $('.wid-head', card);
+    btn.addEventListener('click', () => {
+      const open = !card.classList.contains('open');
+      $$('.wid').forEach(c => { c.classList.remove('open'); $('.wid-head', c).setAttribute('aria-expanded', 'false'); });
+      card.classList.toggle('open', open);
+      btn.setAttribute('aria-expanded', open);
+    });
+  });
+
+  /* ── Cursor dot: trails the pointer, grows over anything clickable ── */
+  if (matchMedia('(hover: hover) and (pointer: fine)').matches && !reduceMotion) {
+    const dot = document.createElement('div');
+    dot.className = 'cursor';
+    dot.setAttribute('aria-hidden', 'true');
+    document.body.appendChild(dot);
+    let mx = innerWidth / 2, my = innerHeight / 2, cx = mx, cy = my;
+    addEventListener('pointermove', e => {
+      mx = e.clientX; my = e.clientY;
+      dot.classList.add('on');
+      dot.classList.toggle('big', !!e.target.closest('a, button, .tiles li, textarea, .w-card'));
+    }, { passive: true });
+    document.addEventListener('pointerleave', () => dot.classList.remove('on'));
+    const follow = () => {
+      cx += (mx - cx) * 0.18; cy += (my - cy) * 0.18;
+      dot.style.transform = `translate3d(${cx}px,${cy}px,0)`;
+      requestAnimationFrame(follow);
+    };
+    requestAnimationFrame(follow);
   }
 
-  /* ── Lightbox with previous / next ── */
-  const lb = $('#lightbox'), lbImg = $('img', lb), lbCap = $('figcaption', lb);
-  let lastFocus = null, group = [], index = 0;
-  const show = i => {
-    index = (i + group.length) % group.length;
-    const el = group[index], img = $('img', el);
-    lbImg.src = el.dataset.full; lbImg.alt = img ? img.alt : '';
-    lbCap.textContent = el.dataset.cap || '';
-  };
-  const openLb = el => {
-    const scope = el.closest('.photo-rows, .cert-strip') || document;
-    group = $$('[data-full]', scope).filter(x => !x.dataset.clone);
-    const src = el.dataset.clone ? group.find(g => g.dataset.full === el.dataset.full) : el;
-    lastFocus = el;
-    show(group.indexOf(src));
-    $('.lb-prev', lb).style.display = $('.lb-next', lb).style.display = group.length > 1 ? '' : 'none';
-    lb.classList.add('open');
-    document.body.style.overflow = 'hidden';
-    $('.lb-close', lb).focus();
-  };
-  const closeLb = () => { lb.classList.remove('open'); document.body.style.overflow = ''; if (lastFocus) lastFocus.focus({ preventScroll: true }); };
-  $$('[data-full]').forEach(el => {
-    if (!el.dataset.clone) { el.tabIndex = 0; el.setAttribute('role', 'button'); }
-    el.addEventListener('click', () => openLb(el));
-    el.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openLb(el); } });
-  });
-  lb.addEventListener('click', e => {
-    if (e.target.closest('.lb-prev')) return show(index - 1);
-    if (e.target.closest('.lb-next')) return show(index + 1);
-    if (e.target === lbImg) return;
-    closeLb();
-  });
-  addEventListener('keydown', e => {
-    if (e.key === 'Escape' && header.classList.contains('open')) setMenu(false);
-    if (!lb.classList.contains('open')) return;
-    if (e.key === 'Escape') closeLb();
-    if (e.key === 'ArrowLeft') show(index - 1);
-    if (e.key === 'ArrowRight') show(index + 1);
-  });
+  /* ── Tech stack: tiles pop in one by one ── */
+  const tiles = $('#tiles');
+  if (tiles) {
+    $$('li', tiles).forEach((li, n) => li.style.setProperty('--n', n));
+    new IntersectionObserver(([e], obs) => {
+      if (e.isIntersecting) { tiles.classList.add('in'); obs.disconnect(); }
+    }, { threshold: 0.15 }).observe(tiles);
+  }
+
+  /* ── Tech stack: rotating wireframe globe with drifting particles ── */
+  const bg = $('#stackBg');
+  if (bg) {
+    const g = bg.getContext('2d');
+    const pts = [];
+    const N = 260;
+    for (let i = 0; i < N; i++) {                       // Fibonacci sphere
+      const y = 1 - (i / (N - 1)) * 2, r = Math.sqrt(1 - y * y), th = i * 2.399963;
+      pts.push([Math.cos(th) * r, y, Math.sin(th) * r]);
+    }
+    const dust = Array.from({ length: 46 }, () => ({ x: Math.random(), y: Math.random(), s: 0.4 + Math.random() * 1.4, v: 0.02 + Math.random() * 0.05 }));
+    let size = 0, running = false, rot = 0, lastT = 0;
+    const fitBg = () => {
+      const r = bg.getBoundingClientRect(), dpr = Math.min(devicePixelRatio, 2);
+      size = r.width; bg.width = r.width * dpr; bg.height = r.height * dpr;
+      g.setTransform(dpr, 0, 0, dpr, 0, 0);
+    };
+    const draw = now => {
+      if (!running) return;
+      const dt = Math.min((now - lastT) / 1000, 0.05) || 0; lastT = now;
+      rot += dt * 0.12;
+      const R = size * 0.36, c = size / 2;
+      g.clearRect(0, 0, size, size);
+      const cs = Math.cos(rot), sn = Math.sin(rot), tilt = 0.35, ct = Math.cos(tilt), st = Math.sin(tilt);
+      const proj = pts.map(([x, y, z]) => {
+        const x1 = x * cs - z * sn, z1 = x * sn + z * cs;
+        const y2 = y * ct - z1 * st, z2 = y * st + z1 * ct;
+        return [c + x1 * R, c + y2 * R, z2];
+      });
+      // links between near neighbours
+      g.lineWidth = 0.6;
+      for (let i = 0; i < proj.length; i++) {
+        for (let j = i + 1; j < Math.min(i + 22, proj.length); j++) {
+          const a = proj[i], b = proj[j];
+          const d = Math.hypot(a[0] - b[0], a[1] - b[1]);
+          if (d > R * 0.24) continue;
+          const depth = (a[2] + b[2]) / 2;
+          g.strokeStyle = `rgba(178,140,255,${(0.05 + (depth + 1) * 0.11).toFixed(3)})`;
+          g.beginPath(); g.moveTo(a[0], a[1]); g.lineTo(b[0], b[1]); g.stroke();
+        }
+      }
+      proj.forEach(([x, y, z]) => {
+        g.fillStyle = `rgba(214,196,255,${(0.15 + (z + 1) * 0.35).toFixed(3)})`;
+        g.beginPath(); g.arc(x, y, 0.8 + (z + 1) * 0.8, 0, Math.PI * 2); g.fill();
+      });
+      dust.forEach(p => {
+        p.y -= p.v * dt; if (p.y < 0) { p.y = 1; p.x = Math.random(); }
+        g.fillStyle = 'rgba(230,215,255,.55)';
+        g.beginPath(); g.arc(p.x * size, p.y * size, p.s, 0, Math.PI * 2); g.fill();
+      });
+      requestAnimationFrame(draw);
+    };
+    fitBg();
+    addEventListener('resize', fitBg);
+    new IntersectionObserver(([e]) => {
+      const was = running;
+      running = e.isIntersecting && !reduceMotion;
+      if (running && !was) { lastT = performance.now(); requestAnimationFrame(draw); }
+      if (reduceMotion && e.isIntersecting) { running = true; draw(performance.now()); running = false; }
+    }).observe(bg);
+  }
 
   /* ── Scam message checker: rule layer of the DigitalKawach engine ── */
   const RULES = [

@@ -41,7 +41,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/styles.css?v=20">
+<link rel="stylesheet" href="assets/styles.css?v=30">
 
 <script type="application/ld+json">
 {
@@ -185,7 +185,7 @@
     <h1><span>Maffi</span><span>Bhall</span></h1>
   </div>
 
-  <div class="hero-photo" id="avatar" role="img" aria-label="Illustrated 3D character of a developer"></div>
+  <div class="hero-photo slot" data-stage="0" role="img" aria-label="Illustrated 3D character of a developer"></div>
 
   <div class="hero-role">
     <p class="an">An</p>
@@ -204,19 +204,75 @@
 <main>
 <!-- ═════════════ ABOUT ═════════════ -->
 <section class="about" id="about">
+  <div class="split">
+    <div class="slot" data-stage="1" aria-hidden="true"></div>
+    <div class="split-copy">
+      <h2 class="kicker reveal">About me</h2>
+      <p class="about-lead reveal">
+        I am an AI web engineer and full-stack developer from Kaithal, India. I build websites, web applications and AI automation, created the scam-detection app
+        <a href="https://digitalkawach.com" target="_blank" rel="noopener">DigitalKawach</a>, and have trained more than 2,000 students in programming, AI and cyber security.
+      </p>
+      <div class="now reveal">
+        <h3>Right now I am doing three things in parallel</h3>
+        <ul>
+          <li><b>Job</b><span>AI &amp; Programming Instructor, Zed-King Group of Institutions, Kaithal<em>Jul 2022 – Present</em></span></li>
+          <li><b>Business</b><span>Founder &amp; Lead Developer, <a href="https://www.anwebservice.com" target="_blank" rel="noopener">A&amp;N Web Services</a> (my own web studio)<em>Jan 2026 – Present</em></span></li>
+          <li><b>Study</b><span>MCA, Kurukshetra University (distance mode)<em>2024 – 2026 · Pursuing</em></span></li>
+        </ul>
+      </div>
+    </div>
+  </div>
   <div class="wrap">
-    <h2 class="kicker reveal">About me</h2>
-    <p class="about-lead reveal">
-      I am an AI web engineer and full-stack developer from Kaithal, India. I build websites, web applications and AI automation as the founder of
-      <a href="https://www.anwebservice.com" target="_blank" rel="noopener">A&amp;N Web Services</a>, created the scam-detection app
-      <a href="https://digitalkawach.com" target="_blank" rel="noopener">DigitalKawach</a>, and since 2022 have trained more than 2,000 students in programming, AI and cyber security.
-    </p>
     <ul class="stats">
       <li class="reveal"><b data-count="4" data-suffix="+">4+</b><span>Years building and teaching</span></li>
       <li class="reveal"><b data-count="2000" data-suffix="+">2,000+</b><span>Students trained</span></li>
       <li class="reveal"><b data-count="50" data-suffix="+">50+</b><span>Workshops and bootcamps</span></li>
       <li class="reveal"><b>5.0</b><span>Google rating, A&amp;N Web Services</span></li>
     </ul>
+  </div>
+</section>
+
+<!-- ═════════════ WHAT I DO ═════════════ -->
+<section class="whatido" id="whatido">
+  <div class="split">
+    <div class="slot" data-stage="2" aria-hidden="true">
+      <h2 class="wid-title" aria-hidden="true">What I do</h2>
+    </div>
+    <div class="split-copy">
+      <h2 class="sr-only">What I do</h2>
+      <div class="wid-cards">
+        <article class="wid reveal open">
+          <button type="button" class="wid-head" aria-expanded="true">
+            <span><b>AI &amp; Automation</b><small>Agents, chatbots and AI products</small></span>
+            <i aria-hidden="true"></i>
+          </button>
+          <div class="wid-body"><div class="wid-inner">
+            <p>I build LLM-powered systems: multi-agent content pipelines, website and WhatsApp chatbots, and DigitalKawach, an app that detects scam messages with a rule engine, LLM analysis and URL reputation checks.</p>
+            <ul class="wid-chips"><li>Groq / LLaMA</li><li>Gemini</li><li>Claude</li><li>OpenAI</li><li>Prompt engineering</li><li>GitHub Actions</li></ul>
+          </div></div>
+        </article>
+        <article class="wid reveal">
+          <button type="button" class="wid-head" aria-expanded="false">
+            <span><b>Full-Stack Web</b><small>Websites and web applications</small></span>
+            <i aria-hidden="true"></i>
+          </button>
+          <div class="wid-body"><div class="wid-inner">
+            <p>Custom-coded websites and full-stack apps with databases, admin dashboards and authentication, built fast and search-friendly with technical SEO and structured data.</p>
+            <ul class="wid-chips"><li>Python</li><li>Flask</li><li>Next.js</li><li>Node.js</li><li>SQL</li><li>Supabase</li><li>Technical SEO</li></ul>
+          </div></div>
+        </article>
+        <article class="wid reveal">
+          <button type="button" class="wid-head" aria-expanded="false">
+            <span><b>Teaching &amp; Training</b><small>AI, programming and cyber security</small></span>
+            <i aria-hidden="true"></i>
+          </button>
+          <div class="wid-body"><div class="wid-inner">
+            <p>Classes, bootcamps and seminars for schools, colleges, ITIs and polytechnics: Python, web development, IoT, generative AI and online scam awareness. 2,000+ students trained since 2022.</p>
+            <ul class="wid-chips"><li>Python</li><li>Generative AI</li><li>Cyber security</li><li>Arduino / IoT</li></ul>
+          </div></div>
+        </article>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -228,29 +284,34 @@
       <div class="tl-line" aria-hidden="true"><i></i></div>
 
       <article class="tl-item">
-        <div class="tl-role"><h3>Learning and building</h3><p>MCA, Kurukshetra University</p></div>
+        <div class="tl-role"><h3>Job + business + MCA</h3><p>All three in parallel</p></div>
         <div class="tl-year">NOW</div>
-        <p class="tl-text">Completing my MCA while building AI products and client systems: LLM agents, scam detection and full-stack web applications.</p>
+        <p class="tl-text">Full-time instructor at Zed-King Group of Institutions, founder of A&amp;N Web Services, and MCA student at Kurukshetra University, all at the same time.</p>
       </article>
       <article class="tl-item">
-        <div class="tl-role"><h3>Founder &amp; Lead Developer</h3><p>A&amp;N Web Services</p></div>
+        <div class="tl-role"><h3>Founder &amp; Lead Developer</h3><p>A&amp;N Web Services · Own business</p></div>
         <div class="tl-year">2026</div>
-        <p class="tl-text">Design and deliver all client work: custom websites, web apps with databases and dashboards, chatbots and automation, plus technical SEO. Released DigitalKawach. 5.0 Google rating from 29 client reviews.</p>
+        <p class="tl-text"><span class="tl-when">Jan 2026 – Present</span>Started my own web studio alongside my job. I design and deliver all client work: websites, web apps with databases and dashboards, chatbots and automation, plus technical SEO. 5.0 Google rating from 29 client reviews.</p>
       </article>
       <article class="tl-item">
-        <div class="tl-role"><h3>AI Instructor</h3><p>Zed-King Group of Institutions</p></div>
+        <div class="tl-role"><h3>MCA</h3><p>Kurukshetra University · Pursuing</p></div>
         <div class="tl-year">2024</div>
-        <p class="tl-text">Teach generative AI and prompt engineering. Designed the AI curriculum and built the institute's multi-agent SEO pipeline that publishes six articles a day.</p>
+        <p class="tl-text"><span class="tl-when">2024 – 2026</span>Master of Computer Applications through distance education, studied alongside my job.</p>
       </article>
       <article class="tl-item">
-        <div class="tl-role"><h3>Digital &amp; Social Media Manager</h3><p>Zed-King Group of Institutions</p></div>
+        <div class="tl-role"><h3>AI Instructor</h3><p>Zed-King Group of Institutions · Same job</p></div>
+        <div class="tl-year">2024</div>
+        <p class="tl-text"><span class="tl-when">Jul 2024 – Present</span>Took on AI teaching within my role: generative AI and prompt engineering. Designed the AI curriculum and built the institute's multi-agent SEO pipeline that publishes six articles a day.</p>
+      </article>
+      <article class="tl-item">
+        <div class="tl-role"><h3>Digital &amp; Social Media Manager</h3><p>Zed-King Group of Institutions · Same job</p></div>
         <div class="tl-year">2023</div>
-        <p class="tl-text">Grew the institute's organic audience to more than 12,000 followers, using AI tools for content, scheduling and analytics.</p>
+        <p class="tl-text"><span class="tl-when">Jan 2023 – Present</span>Additional responsibility: grew the institute's organic audience to more than 12,000 followers.</p>
       </article>
       <article class="tl-item">
-        <div class="tl-role"><h3>Programming &amp; IoT Instructor</h3><p>Zed-King Group of Institutions</p></div>
+        <div class="tl-role"><h3>Programming &amp; IoT Instructor</h3><p>Zed-King Group of Institutions · Job</p></div>
         <div class="tl-year">2022</div>
-        <p class="tl-text">Joined in July 2022. Taught Python, C, C++, web development and cyber security to 2,000+ students, supervised Arduino IoT projects and ran bootcamps at six Kendriya Vidyalayas under PM SHRI.</p>
+        <p class="tl-text"><span class="tl-when">Jul 2022 – Present</span>Joined Zed-King, where I still work. Taught Python, C, C++, web development and cyber security to 2,000+ students, supervised Arduino IoT projects and ran bootcamps at six Kendriya Vidyalayas under PM SHRI.</p>
       </article>
       <article class="tl-item">
         <div class="tl-role"><h3>B.A. Mathematics &amp; O-Level (IT)</h3><p>Kurukshetra University · NIELIT</p></div>
@@ -325,7 +386,20 @@
       <article class="w-card">
         <div class="w-top"><span class="w-num">07</span><div><h3>IoT Student Projects</h3><p>Hardware / Embedded</p></div></div>
         <div class="w-tools"><h4>Tools and features</h4><p>Arduino, C/C++, PlatformIO, sensors and actuators. Smart home, ultrasonic radar, smart city and automated waste management prototypes.</p></div>
-        <div class="w-img"><img src="assets/img/field/iot-military-base-project-maffi-bhall-students-sm.webp" alt="Maffi Bhall with students and their Arduino IoT base security model" width="720" height="404" loading="lazy"></div>
+        <div class="w-img w-diagram" role="img" aria-label="Diagram: sensors feed an Arduino board that drives motors, a buzzer and a display">
+          <svg viewBox="0 0 420 262" aria-hidden="true">
+            <g font-family="Geist, system-ui, sans-serif" font-size="12" text-anchor="middle">
+              <rect x="20" y="30" width="110" height="38" rx="9" class="n"/><text x="75" y="53">Ultrasonic</text>
+              <rect x="20" y="112" width="110" height="38" rx="9" class="n"/><text x="75" y="135">IR / gas sensor</text>
+              <rect x="20" y="194" width="110" height="38" rx="9" class="n"/><text x="75" y="217">Voice module</text>
+              <rect x="160" y="86" width="100" height="90" rx="12" class="n hi"/><text x="210" y="127">Arduino</text><text x="210" y="145" font-size="10" class="sub">C / C++</text>
+              <rect x="290" y="30" width="110" height="38" rx="9" class="n"/><text x="345" y="53">Servo motor</text>
+              <rect x="290" y="112" width="110" height="38" rx="9" class="n"/><text x="345" y="135">Buzzer / LED</text>
+              <rect x="290" y="194" width="110" height="38" rx="9" class="n"/><text x="345" y="217">LCD display</text>
+              <path d="M130 49h15v60h15M130 131h30M130 213h15v-60h15M260 109h15V49h15M260 131h30M260 153h15v60h15" class="e"/>
+            </g>
+          </svg>
+        </div>
         <div class="w-links"><span class="w-note">Built with students in the Zed-King lab</span></div>
       </article>
 
@@ -364,6 +438,7 @@
 <!-- ═════════════ TECH STACK ═════════════ -->
 <section class="stack" id="stack">
   <div class="wrap">
+    <canvas class="stack-bg" id="stackBg" aria-hidden="true"></canvas>
     <h2 class="stack-title reveal">Tech Stack</h2>
     <ul class="tiles" id="tiles">
       <li style="--c:#3776ab"><i style="--i:url(https://cdn.jsdelivr.net/npm/simple-icons@13.21.0/icons/python.svg)"></i>Python</li>
@@ -412,25 +487,6 @@
     </div>
   </div>
 
-  <div class="photo-rows" id="photos">
-    <div class="photo-row">
-      <figure data-full="assets/img/field/india-ai-impact-expo-2026-team-maffi-bhall.webp" data-cap="India AI Impact Expo 2026, New Delhi"><img src="assets/img/field/india-ai-impact-expo-2026-team-maffi-bhall-sm.webp" alt="Maffi Bhall at the India AI Impact Expo 2026" width="720" height="540" loading="lazy"></figure>
-      <figure data-full="assets/img/field/polytechnic-cyber-security-seminar-maffi-bhall.jpg" data-cap="Cyber security seminar, Govt. Polytechnic, Shergarh"><img src="assets/img/field/polytechnic-cyber-security-seminar-maffi-bhall-sm.webp" alt="Maffi Bhall delivering a cyber security seminar" width="720" height="540" loading="lazy"></figure>
-      <figure data-full="assets/img/field/nss-state-camp-cyber-safety-workshop.jpg" data-cap="200+ NSS volunteers trained on deepfakes and digital fraud"><img src="assets/img/field/nss-state-camp-cyber-safety-workshop-sm.webp" alt="NSS volunteers at the cyber safety workshop" width="720" height="405" loading="lazy"></figure>
-      <figure data-full="assets/img/field/cbse-ai-workshop-chief-guest-maffi-bhall.jpg" data-cap="Chief Guest, CBSE AI workshop, Aryan International School, Kaithal"><img src="assets/img/field/cbse-ai-workshop-chief-guest-maffi-bhall-sm.webp" alt="Maffi Bhall honoured as chief guest" width="720" height="405" loading="lazy"></figure>
-      <figure data-full="assets/img/field/zedking-computer-lab-class-maffi-bhall.jpg" data-cap="Computer lab class, Zed-King, Kaithal"><img src="assets/img/field/zedking-computer-lab-class-maffi-bhall-sm.webp" alt="Maffi Bhall teaching a computer lab class" width="720" height="540" loading="lazy"></figure>
-      <figure data-full="assets/img/field/pm-shri-kendriya-vidyalaya-bootcamp-students-maffi-bhall.webp" data-cap="PM SHRI Python and AI bootcamp, Kendriya Vidyalaya"><img src="assets/img/field/pm-shri-kendriya-vidyalaya-bootcamp-students-maffi-bhall-sm.webp" alt="Maffi Bhall with Kendriya Vidyalaya students" width="720" height="216" loading="lazy"></figure>
-    </div>
-    <div class="photo-row rev">
-      <figure data-full="assets/img/field/ai-impact-summit-robot-demo-maffi-bhall.webp" data-cap="Robotics demo, India AI Impact Summit 2026"><img src="assets/img/field/ai-impact-summit-robot-demo-maffi-bhall-sm.webp" alt="Maffi Bhall with a quadruped robot" width="405" height="720" loading="lazy"></figure>
-      <figure data-full="assets/img/field/dynamic-educator-award-ceremony-maffi-bhall.jpg" data-cap="Dynamic Educator &amp; Creative Mind Award, Zed-King 20th Foundation Day"><img src="assets/img/field/dynamic-educator-award-ceremony-maffi-bhall-sm.webp" alt="Maffi Bhall receiving the Dynamic Educator award" width="720" height="540" loading="lazy"></figure>
-      <figure data-full="assets/img/field/iti-hands-on-cyber-safety-training-maffi-bhall.jpg" data-cap="Hands-on cyber safety session with ITI students"><img src="assets/img/field/iti-hands-on-cyber-safety-training-maffi-bhall-sm.webp" alt="Maffi Bhall guiding ITI students" width="720" height="540" loading="lazy"></figure>
-      <figure data-full="assets/img/field/nss-state-camp-speaker-maffi-bhall.jpg" data-cap="Special Guest Speaker, State Level NSS Camp"><img src="assets/img/field/nss-state-camp-speaker-maffi-bhall-sm.webp" alt="Maffi Bhall speaking at the State Level NSS Camp" width="405" height="720" loading="lazy"></figure>
-      <figure data-full="assets/img/field/zedking-students-trophies-celebration-maffi-bhall.webp" data-cap="Students with their trophies, Zed-King, Kaithal"><img src="assets/img/field/zedking-students-trophies-celebration-maffi-bhall-sm.webp" alt="Maffi Bhall with students holding trophies" width="720" height="540" loading="lazy"></figure>
-      <figure data-full="assets/img/field/lions-club-kaithal-podium-maffi-bhall.webp" data-cap="Speaking at Lions Club Kaithal City"><img src="assets/img/field/lions-club-kaithal-podium-maffi-bhall-sm.webp" alt="Maffi Bhall at the podium, Lions Club Kaithal" width="720" height="405" loading="lazy"></figure>
-      <figure data-full="assets/img/field/iris-humanoid-robot-maffi-bhall.webp" data-cap="With IRIS, a humanoid robot"><img src="assets/img/field/iris-humanoid-robot-maffi-bhall-sm.webp" alt="Maffi Bhall with the IRIS humanoid robot" width="405" height="720" loading="lazy"></figure>
-    </div>
-  </div>
 </section>
 
 <!-- ═════════════ CREDENTIALS ═════════════ -->
@@ -441,7 +497,7 @@
       <div class="cred-col reveal">
         <h3>Education</h3>
         <dl>
-          <div><dt>MCA</dt><dd>Kurukshetra University (CDOE)</dd><span>2024 – 2026</span></div>
+          <div><dt>MCA <small>(pursuing)</small></dt><dd>Kurukshetra University (CDOE), alongside my job</dd><span>2024 – 2026</span></div>
           <div><dt>O-Level (IT)</dt><dd>NIELIT · 78.8% · S grade in Python</dd><span>2021 – 2022</span></div>
           <div><dt>B.A. Mathematics</dt><dd>IGMM, Kurukshetra University · 84.7%</dd><span>2019 – 2022</span></div>
           <div><dt>Senior Secondary</dt><dd>HBSE · 91.8%</dd><span>2019</span></div>
@@ -466,12 +522,6 @@
           <div><dt>Certificate of Appreciation</dt><dd>State Level NSS Camp, Dept. of Higher Education, Haryana</dd><span>Jun 2026</span></div>
         </dl>
       </div>
-    </div>
-    <div class="cert-strip">
-      <figure class="reveal" data-full="assets/img/cert-buildathon.jpg" data-cap="India AI Impact Buildathon 2026 certificate"><img src="assets/img/cert-buildathon-sm.webp" alt="India AI Impact Buildathon certificate" width="720" height="483" loading="lazy"></figure>
-      <figure class="reveal" data-full="assets/img/cert-google-educator.jpg" data-cap="Google Certified Educator Level 2"><img src="assets/img/cert-google-educator-sm.webp" alt="Google Certified Educator Level 2 certificate" width="720" height="556" loading="lazy"></figure>
-      <figure class="reveal" data-full="assets/img/cert-award.jpg" data-cap="Dynamic Educator &amp; Creative Mind Award"><img src="assets/img/cert-award-sm.webp" alt="Dynamic Educator and Creative Mind Award certificate" width="720" height="511" loading="lazy"></figure>
-      <figure class="reveal" data-full="assets/img/field/certificate-presentation-maffi-bhall.webp" data-cap="Receiving the Training of Trainers certificate, NIELIT Kurukshetra"><img src="assets/img/field/certificate-presentation-maffi-bhall-sm.webp" alt="Maffi Bhall receiving her Training of Trainers certificate" width="720" height="713" loading="lazy"></figure>
     </div>
     <p class="aka">Certificates and degrees are issued in the name Maffi Devi.</p>
   </div>
@@ -508,14 +558,7 @@
   </div>
 </footer>
 
-<div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Image preview">
-  <button type="button" class="lb-close" aria-label="Close preview"><svg><use href="#i-x"/></svg></button>
-  <button type="button" class="lb-prev" aria-label="Previous photo"><svg><use href="#i-left"/></svg></button>
-  <figure><img alt=""><figcaption></figcaption></figure>
-  <button type="button" class="lb-next" aria-label="Next photo"><svg><use href="#i-right"/></svg></button>
-</div>
-
-<script src="assets/main.js?v=21"></script>
-<script type="module" src="assets/avatar.js?v=1"></script>
+<script src="assets/main.js?v=30"></script>
+<script type="module" src="assets/avatar.js?v=30"></script>
 </body>
 </html>
