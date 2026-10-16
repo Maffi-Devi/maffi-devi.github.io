@@ -26,32 +26,26 @@
   }, { rootMargin: '-45% 0px -50% 0px' });
   ['about', 'career', 'work', 'contact'].forEach(id => sectionObs.observe(document.getElementById(id)));
 
-  /* ── Rotating roles: the current line is bright, the next one dim ── */
+  /* ── Roles: a bright front line over a faded back line; letters rise in on each change ── */
   const roles = $('#roles');
   if (roles) {
-    const list = $('ul', roles);
-    const items = $$('li', list);
-    items.forEach(li => list.appendChild(li.cloneNode(true)));   // second copy for a seamless loop
-    const all = $$('li', list);
+    const list = roles.dataset.roles.split('|');
+    const back = $('.role-back', roles), front = $('.role-front', roles);
+    const split = (el, text, cls) => {
+      el.innerHTML = [...text].map((c, i) => `<span class="ch ${cls}" style="--i:${i}">${c}</span>`).join('');
+    };
     let i = 0;
-    all[0].classList.add('on');
+    split(back, list[list.length - 1], reduceMotion ? '' : 'in');
+    split(front, list[0], reduceMotion ? '' : 'in');
     if (!reduceMotion) {
       setInterval(() => {
-        all[i].classList.remove('on');
-        i++;
-        list.style.transition = '';
-        list.style.transform = `translateY(-${i * 1.15}em)`;
-        all[i].classList.add('on');
-        if (i === items.length) {
-          setTimeout(() => {
-            list.style.transition = 'none';
-            list.style.transform = 'translateY(0)';
-            all[i].classList.remove('on');
-            i = 0;
-            all[0].classList.add('on');
-          }, 950);
-        }
-      }, 2600);
+        $$('.ch', front).forEach(c => { c.classList.remove('in'); c.classList.add('out'); });
+        setTimeout(() => {
+          split(back, list[i], 'in');
+          i = (i + 1) % list.length;
+          split(front, list[i], 'in');
+        }, 420);
+      }, 3200);
     }
   }
 

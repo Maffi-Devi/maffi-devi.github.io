@@ -222,12 +222,27 @@ const computeTarget = () => {
   while (i < list.length - 1 && v > list[i + 1].center) i++;
   const a = list[i], b = list[i + 1];
   const fa = frameFor(a.stage, a.el);
-  let t = 0, out = fa;
+  let t = 0, out = { ...fa }, fadeMul = 1, phase = a.stage;
   if (b && v > a.center) {
-    t = smooth(clamp01((v - a.center) / (b.center - a.center)));
+    t = clamp01((v - a.center) / (b.center - a.center));
     const fb = frameFor(b.stage, b.el);
-    out = {};
-    for (const k of ['x', 'y', 'z', 'rotY', 'pose', 'track']) out[k] = lerp(fa[k], fb[k], t);
+    if (fa.pose === fb.pose) {
+      const e = smooth(t);
+      for (const k of ['x', 'y', 'z', 'rotY', 'pose', 'track']) out[k] = lerp(fa[k], fb[k], e);
+    } else {
+      // standing → seated: turn and slide aside while fading out, then fade back in already seated
+      const shiftA = fa.z * TAN * camera.aspect * 0.55, shiftB = fb.z * TAN * camera.aspect * 0.35;
+      if (t < 0.5) {
+        const u = smooth(t / 0.5);
+        out = { ...fa, x: fa.x + shiftA * u, rotY: fa.rotY + 1.0 * u, track: fa.track * (1 - u) };
+        fadeMul = 1 - u * u;
+      } else {
+        const u = smooth((t - 0.5) / 0.5);
+        out = { ...fb, x: fb.x - shiftB * (1 - u), rotY: fb.rotY - 0.5 * (1 - u) };
+        fadeMul = u;
+        phase = b.stage;
+      }
+    }
   }
   // fade out past the last slot, and between slots that are far apart (mobile skips the about stage)
   const last = list[list.length - 1];
@@ -237,7 +252,8 @@ const computeTarget = () => {
     const gap = b.center - a.center;
     if (gap > H * 1.6) opacity = Math.min(opacity, Math.max(clamp01(1 - (v - a.center) / (H * 0.5)), clamp01(1 - (b.center - v) / (H * 0.5))));
   }
-  out.opacity = opacity;
+  out.opacity = opacity * fadeMul;
+  out.phase = phase;
   return out;
 };
 
@@ -252,7 +268,7 @@ addEventListener('pointermove', e => {
 
 /* ── loop ── */
 const t0 = performance.now();
-let last = t0, nextBlink = 2, blinkT = -1, intro = reduceMotion ? 1 : 0, first = true;
+let lastPhase = -1, last = t0, nextBlink = 2, blinkT = -1, intro = reduceMotion ? 1 : 0, first = true;
 
 const pose = (p, t) => {
   // arms: hanging (p=0) → reaching for the keyboard (p=1), with a typing wobble
@@ -274,9 +290,13 @@ const tick = now => {
   last = now;
 
   const target = computeTarget();
-  const k = first || reduceMotion ? 1 : 1 - Math.pow(0.0015, dt);   // frame-rate independent smoothing
+  // frame-rate independent smoothing; snap when the hidden standing/seated swap happens
+  const snap = first || reduceMotion || target.phase !== lastPhase;
+  const k = snap ? 1 : 1 - Math.pow(0.0015, dt);
   first = false;
-  for (const key of Object.keys(target)) state[key] = lerp(state[key], target[key], k);
+  lastPhase = target.phase;
+  for (const key of ['x', 'y', 'z', 'rotY', 'pose', 'track']) state[key] = lerp(state[key], target[key], k);
+  state.opacity = lerp(state.opacity, target.opacity, first ? 1 : 1 - Math.pow(0.0015, dt));
 
   canvas.style.opacity = state.opacity.toFixed(3);
   if (state.opacity < 0.01) return;
