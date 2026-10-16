@@ -4,122 +4,78 @@
   const $$ = (s, c = document) => [...c.querySelectorAll(s)];
   const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  /* ── Nav: scrolled state, progress bar, back to top, mobile menu, active link ── */
-  const nav = $('#nav'), progress = $('#progress'), toTop = $('#toTop');
-  let ticking = false;
-  const onScroll = () => {
-    ticking = false;
-    const max = document.documentElement.scrollHeight - innerHeight;
-    nav.classList.toggle('scrolled', scrollY > 24);
-    toTop.classList.toggle('show', scrollY > 700);
-    progress.style.transform = `scaleX(${max > 0 ? Math.min(1, scrollY / max) : 0})`;
+  requestAnimationFrame(() => document.documentElement.classList.add('loaded'));
+
+  /* ── Header: scrolled state, mobile menu, active link ── */
+  const header = $('#header'), menuBtn = $('#menuBtn');
+  const setMenu = open => {
+    header.classList.toggle('open', open);
+    menuBtn.setAttribute('aria-expanded', open);
+    menuBtn.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+    document.body.style.overflow = open ? 'hidden' : '';
   };
-  addEventListener('scroll', () => { if (!ticking) { ticking = true; requestAnimationFrame(onScroll); } }, { passive: true });
-  onScroll();
-  toTop.addEventListener('click', () => scrollTo({ top: 0, behavior: reduceMotion ? 'auto' : 'smooth' }));
+  menuBtn.addEventListener('click', () => setMenu(!header.classList.contains('open')));
+  $$('#nav a').forEach(a => a.addEventListener('click', () => setMenu(false)));
 
-  const menuBtn = $('#menuBtn');
-  const setMenu = open => { nav.classList.toggle('open', open); menuBtn.setAttribute('aria-expanded', open); };
-  menuBtn.addEventListener('click', () => setMenu(!nav.classList.contains('open')));
-  $$('#navLinks a').forEach(a => a.addEventListener('click', () => setMenu(false)));
-
-  const links = $$('#navLinks a');
+  const links = $$('#nav a');
   const sectionObs = new IntersectionObserver(entries => {
     entries.forEach(e => {
       if (!e.isIntersecting) return;
       links.forEach(l => l.classList.toggle('active', l.getAttribute('href') === '#' + e.target.id));
     });
   }, { rootMargin: '-45% 0px -50% 0px' });
-  $$('header[id], section[id]').forEach(s => sectionObs.observe(s));
+  ['about', 'career', 'work', 'contact'].forEach(id => sectionObs.observe(document.getElementById(id)));
 
-  /* ── Hero text: letter reveal for the name, rotating role, word-by-word intro ── */
-  if (!reduceMotion) {
-    const h1 = $('.hero h1');
-    if (h1) {
-      let i = 0;
-      const words = h1.textContent.trim().split(/\s+/);
-      h1.setAttribute('aria-label', h1.textContent.trim());
-      h1.innerHTML = words.map(w => `<span class="wd" aria-hidden="true">${[...w].map(c => `<span class="ch" style="--i:${i++}">${c}</span>`).join('')}</span>`).join(' ') + '<span class="dot" aria-hidden="true"></span>';
-      h1.classList.add('split');
-    }
-
-    const lede = $('.hero .lede');
-    if (lede) {
-      let i = 0;
-      const walk = node => [...node.childNodes].forEach(n => {
-        if (n.nodeType === 1) return walk(n);
-        if (n.nodeType !== 3 || !n.textContent.trim()) return;
-        const frag = document.createDocumentFragment();
-        n.textContent.split(/(\s+)/).forEach(part => {
-          if (!part.trim()) return frag.appendChild(document.createTextNode(part ? ' ' : ''));
-          const s = document.createElement('span');
-          s.className = 'w'; s.style.setProperty('--i', i++); s.textContent = part;
-          frag.appendChild(s);
-        });
-        n.replaceWith(frag);
-      });
-      walk(lede);
-      lede.classList.add('split');
-    }
-
-    const role = $('#role');
-    if (role && role.dataset.roles) {
-      const roles = role.dataset.roles.split('|');
-      role.setAttribute('aria-label', role.textContent.replace(/\s+/g, ' ').trim());
-      role.innerHTML = `<span class="rot-list" aria-hidden="true">${roles.map(r => `<span class="rot-item">${r}</span>`).join('')}</span>`;
-      role.classList.add('rot');
-      const items = $$('.rot-item', role);
-      let cur = 0;
-      setTimeout(() => items[0].classList.add('on'), 350);
+  /* ── Rotating roles: the current line is bright, the next one dim ── */
+  const roles = $('#roles');
+  if (roles) {
+    const list = $('ul', roles);
+    const items = $$('li', list);
+    items.forEach(li => list.appendChild(li.cloneNode(true)));   // second copy for a seamless loop
+    const all = $$('li', list);
+    let i = 0;
+    all[0].classList.add('on');
+    if (!reduceMotion) {
       setInterval(() => {
-        const prev = items[cur];
-        cur = (cur + 1) % items.length;
-        prev.classList.remove('on'); prev.classList.add('out');
-        items[cur].classList.remove('out'); items[cur].classList.add('on');
-        setTimeout(() => prev.classList.remove('out'), 800);
+        all[i].classList.remove('on');
+        i++;
+        list.style.transition = '';
+        list.style.transform = `translateY(-${i * 1.15}em)`;
+        all[i].classList.add('on');
+        if (i === items.length) {
+          setTimeout(() => {
+            list.style.transition = 'none';
+            list.style.transform = 'translateY(0)';
+            all[i].classList.remove('on');
+            i = 0;
+            all[0].classList.add('on');
+          }, 950);
+        }
       }, 2600);
     }
   }
 
-  /* ── Reveal on scroll, staggered within each row of siblings ── */
+  /* ── Reveal on scroll ── */
   const revealObs = new IntersectionObserver(entries => {
-    const shown = entries.filter(e => e.isIntersecting);
-    shown.forEach((e, i) => {
-      const el = e.target;
-      if (!el.style.getPropertyValue('--d')) el.style.setProperty('--d', Math.min(i, 5) * 0.08 + 's');
-      el.classList.add('in');
-      revealObs.unobserve(el);
-      setTimeout(() => el.classList.add('done'), 1300);
+    entries.filter(e => e.isIntersecting).forEach((e, n) => {
+      if (!e.target.style.getPropertyValue('--d')) e.target.style.setProperty('--d', Math.min(n, 4) * 0.08 + 's');
+      e.target.classList.add('in');
+      revealObs.unobserve(e.target);
     });
-  }, { threshold: 0.08, rootMargin: '0px 0px -6% 0px' });
+  }, { threshold: 0.12, rootMargin: '0px 0px -6% 0px' });
   $$('.reveal').forEach(el => revealObs.observe(el));
 
-  /* ── Pointer spotlight on cards ── */
-  if (matchMedia('(hover: hover)').matches) {
-    $$('.card.hover').forEach(card => card.addEventListener('pointermove', e => {
-      const r = card.getBoundingClientRect();
-      card.style.setProperty('--mx', e.clientX - r.left + 'px');
-      card.style.setProperty('--my', e.clientY - r.top + 'px');
-    }, { passive: true }));
-  }
-
-  /* ── Marquee: duplicate the items once so the loop is seamless ── */
-  const marquee = $('#marquee');
-  if (marquee && !reduceMotion) {
-    $$('li', marquee).forEach(li => { const c = li.cloneNode(true); c.setAttribute('aria-hidden', 'true'); marquee.appendChild(c); });
-  }
-
-  /* ── Count-up metrics ── */
+  /* ── Count-up numbers ── */
   const countObs = new IntersectionObserver(entries => {
     entries.forEach(e => {
       if (!e.isIntersecting) return;
       const el = e.target, end = +el.dataset.count, suffix = el.dataset.suffix || '';
       countObs.unobserve(el);
       if (reduceMotion) return;
-      const t0 = performance.now(), dur = 1400;
+      const t0 = performance.now(), dur = 1500;
       const tick = now => {
-        const p = Math.min(1, (now - t0) / dur), v = Math.round(end * (1 - Math.pow(1 - p, 3)));
-        el.textContent = v.toLocaleString('en-IN') + suffix;
+        const p = Math.min(1, (now - t0) / dur);
+        el.textContent = Math.round(end * (1 - Math.pow(1 - p, 3))).toLocaleString('en-IN') + suffix;
         if (p < 1) requestAnimationFrame(tick);
       };
       requestAnimationFrame(tick);
@@ -127,43 +83,48 @@
   }, { threshold: 0.6 });
   $$('[data-count]').forEach(el => countObs.observe(el));
 
-  /* ── Photo gallery: category filters and "show all" ── */
-  const gallery = $('#gallery'), filters = $('#filters'), moreBtn = $('#moreBtn');
-  const FIRST = 13;
-  let expanded = false, current = 'all';
-  if (gallery) {
-    const shots = $$('.shot', gallery);
-    const CATS = [['all', 'All'], ['summit', 'AI Impact Summit'], ['workshops', 'Workshops'], ['students', 'Students'], ['awards', 'Awards']];
-    const apply = animate => {
-      let n = 0;
-      shots.forEach(s => {
-        const match = current === 'all' || s.dataset.cat === current;
-        const show = match && (current !== 'all' || expanded || n < FIRST);
-        if (match) n++;
-        const was = !s.classList.contains('hide');
-        s.classList.toggle('hide', !show);
-        if (show) { s.classList.add('in', 'done'); }
-        if (animate && show && !was) { s.classList.remove('pop'); void s.offsetWidth; s.classList.add('pop'); }
-      });
-      moreBtn.parentElement.style.display = current === 'all' && !expanded && shots.length > FIRST ? '' : 'none';
-    };
-    CATS.forEach(([key, label]) => {
-      const count = key === 'all' ? shots.length : shots.filter(s => s.dataset.cat === key).length;
-      const b = document.createElement('button');
-      b.type = 'button';
-      b.innerHTML = `${label}<span>${count}</span>`;
-      b.setAttribute('aria-pressed', key === current);
-      if (key === current) b.className = 'on';
-      b.addEventListener('click', () => {
-        current = key;
-        $$('button', filters).forEach(x => { x.classList.toggle('on', x === b); x.setAttribute('aria-pressed', x === b); });
-        shots.forEach(s => s.classList.add('hide'));
-        apply(true);
-      });
-      filters.appendChild(b);
-    });
-    moreBtn.addEventListener('click', () => { expanded = true; apply(true); });
-    apply(false);
+  /* ── Scroll-driven: header state, timeline progress, pinned horizontal work ── */
+  const timeline = $('#timeline'), tlFill = $('.tl-line i', timeline), tlItems = $$('.tl-item', timeline);
+  const work = $('#work'), track = $('#workTrack'), contact = $('#contact');
+  const wide = matchMedia('(min-width: 900px)');
+  let travel = 0;
+
+  const layoutWork = () => {
+    const pin = !reduceMotion && wide.matches;
+    work.classList.toggle('pinned', pin);
+    track.style.transform = '';
+    if (!pin) { work.style.height = ''; travel = 0; return; }
+    travel = Math.max(0, track.scrollWidth - innerWidth);
+    work.style.height = innerHeight + travel + 'px';
+  };
+
+  const onScroll = () => {
+    header.classList.toggle('scrolled', scrollY > 30);
+    document.body.classList.toggle('at-end', contact.getBoundingClientRect().top < innerHeight * 0.75);
+
+    const r = timeline.getBoundingClientRect();
+    const p = Math.min(1, Math.max(0, (innerHeight * 0.55 - r.top) / r.height));
+    tlFill.style.setProperty('--p', p);
+    tlItems.forEach(it => it.classList.toggle('on', it.getBoundingClientRect().top < innerHeight * 0.62));
+
+    if (travel) {
+      const w = work.getBoundingClientRect();
+      document.body.classList.toggle('in-work', w.top < innerHeight * 0.3 && w.bottom > innerHeight * 0.7);
+      const q = Math.min(1, Math.max(0, -w.top / (w.height - innerHeight)));
+      track.style.transform = `translate3d(${-q * travel}px,0,0)`;
+    }
+  };
+  let ticking = false;
+  addEventListener('scroll', () => { if (!ticking) { ticking = true; requestAnimationFrame(() => { ticking = false; onScroll(); }); } }, { passive: true });
+  addEventListener('resize', () => { layoutWork(); onScroll(); });
+  addEventListener('load', () => { layoutWork(); onScroll(); });
+  layoutWork(); onScroll();
+
+  /* ── Photo rows: duplicate once so the marquee loops seamlessly ── */
+  if (!reduceMotion) {
+    $$('.photo-row').forEach(row => $$('figure', row).forEach(f => {
+      const c = f.cloneNode(true); c.setAttribute('aria-hidden', 'true'); c.dataset.clone = '1'; row.appendChild(c);
+    }));
   }
 
   /* ── Lightbox with previous / next ── */
@@ -176,20 +137,19 @@
     lbCap.textContent = el.dataset.cap || '';
   };
   const openLb = el => {
-    const scope = el.closest('.gallery, .certs, .iot-strip') || document;
-    group = $$('[data-full]', scope).filter(x => !x.classList.contains('hide'));
+    const scope = el.closest('.photo-rows, .cert-strip') || document;
+    group = $$('[data-full]', scope).filter(x => !x.dataset.clone);
+    const src = el.dataset.clone ? group.find(g => g.dataset.full === el.dataset.full) : el;
     lastFocus = el;
-    show(group.indexOf(el));
-    const many = group.length > 1;
-    $('.lb-prev', lb).style.display = $('.lb-next', lb).style.display = many ? '' : 'none';
+    show(group.indexOf(src));
+    $('.lb-prev', lb).style.display = $('.lb-next', lb).style.display = group.length > 1 ? '' : 'none';
     lb.classList.add('open');
     document.body.style.overflow = 'hidden';
     $('.lb-close', lb).focus();
   };
   const closeLb = () => { lb.classList.remove('open'); document.body.style.overflow = ''; if (lastFocus) lastFocus.focus({ preventScroll: true }); };
   $$('[data-full]').forEach(el => {
-    el.tabIndex = 0;
-    el.setAttribute('role', 'button');
+    if (!el.dataset.clone) { el.tabIndex = 0; el.setAttribute('role', 'button'); }
     el.addEventListener('click', () => openLb(el));
     el.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openLb(el); } });
   });
@@ -200,6 +160,7 @@
     closeLb();
   });
   addEventListener('keydown', e => {
+    if (e.key === 'Escape' && header.classList.contains('open')) setMenu(false);
     if (!lb.classList.contains('open')) return;
     if (e.key === 'Escape') closeLb();
     if (e.key === 'ArrowLeft') show(index - 1);
@@ -224,17 +185,13 @@
     { re: /(rs\.?|₹|inr)\s?[\d,]{5,}/i, w: 10, why: 'Mentions a large sum of money' },
     { re: /!{2,}|[A-Z]{6,}/, w: 6, why: 'Uses capital letters or repeated exclamation marks for pressure' },
   ];
-
   const scan = text => {
     const hits = RULES.filter(r => r.re.test(text));
     const hasUrl = /https?:\/\/|www\./i.test(text);
-    const score = Math.min(100, hits.reduce((s, r) => s + r.w, 0) + (hasUrl && hits.length ? 6 : 0));
-    return { score, hits };
+    return { score: Math.min(100, hits.reduce((s, r) => s + r.w, 0) + (hasUrl && hits.length ? 6 : 0)), hits };
   };
-
   const out = $('#scanOut'), input = $('#scanInput');
   const esc = s => s.replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
-
   const render = () => {
     const text = input.value.trim();
     out.className = 'scan-out';
@@ -245,13 +202,9 @@
       ? hits.map(h => `<li>${esc(h.why)}</li>`).join('')
       : '<li>No known scam patterns matched. If the request is unexpected, confirm it with the sender directly.</li>';
     out.classList.add(level);
-    out.innerHTML = `
-      <div class="verdict"><b>${label}</b><span>Risk score ${score}/100</span></div>
-      <div class="meter"><i></i></div>
-      <ul class="reasons">${reasons}</ul>`;
+    out.innerHTML = `<div class="verdict"><b>${label}</b><span>Risk score ${score}/100</span></div><div class="meter"><i></i></div><ul class="reasons">${reasons}</ul>`;
     requestAnimationFrame(() => { $('.meter i', out).style.width = Math.max(score, 4) + '%'; });
   };
-
   $('#scanBtn').addEventListener('click', render);
   input.addEventListener('keydown', e => { if (e.key === 'Enter' && (e.ctrlKey || e.metaKey)) render(); });
   $$('.samples button').forEach(b => b.addEventListener('click', () => { input.value = b.dataset.s; render(); }));
