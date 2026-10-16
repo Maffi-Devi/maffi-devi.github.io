@@ -37,7 +37,7 @@
 <link rel="me" href="https://www.linkedin.com/in/bhallmaffi/">
 <link rel="me" href="https://github.com/Maffi-Devi">
 <link rel="alternate" type="text/plain" href="llms.txt" title="LLM-readable profile">
-<link rel="preload" as="image" href="assets/img/maffi-bhall-cutout.webp" fetchpriority="high">
+<link rel="modulepreload" href="https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.min.js" crossorigin>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
@@ -185,9 +185,7 @@
     <h1><span>Maffi</span><span>Bhall</span></h1>
   </div>
 
-  <div class="hero-photo">
-    <img src="assets/img/maffi-bhall-cutout.webp" alt="Maffi Bhall at the India AI Impact Summit 2026" width="400" height="900" fetchpriority="high">
-  </div>
+  <div class="hero-photo" id="avatar" role="img" aria-label="Illustrated 3D character of a developer"></div>
 
   <div class="hero-role">
     <p class="an">An</p>
@@ -252,17 +250,12 @@
       <article class="tl-item">
         <div class="tl-role"><h3>Programming &amp; IoT Instructor</h3><p>Zed-King Group of Institutions</p></div>
         <div class="tl-year">2022</div>
-        <p class="tl-text">Taught Python, C, C++, web development and cyber security to 2,000+ students, supervised Arduino IoT projects and ran bootcamps at six Kendriya Vidyalayas under PM SHRI.</p>
+        <p class="tl-text">Joined in July 2022. Taught Python, C, C++, web development and cyber security to 2,000+ students, supervised Arduino IoT projects and ran bootcamps at six Kendriya Vidyalayas under PM SHRI.</p>
       </article>
       <article class="tl-item">
-        <div class="tl-role"><h3>O-Level (IT)</h3><p>NIELIT</p></div>
-        <div class="tl-year">2021</div>
-        <p class="tl-text">Started programming seriously: completed NIELIT O-Level with an S grade in Python and qualified as a certified trainer.</p>
-      </article>
-      <article class="tl-item">
-        <div class="tl-role"><h3>B.A. Mathematics</h3><p>Kurukshetra University</p></div>
-        <div class="tl-year">2019</div>
-        <p class="tl-text">Mathematics undergraduate (84.7%). This is where problem solving, and later code, began.</p>
+        <div class="tl-role"><h3>B.A. Mathematics &amp; O-Level (IT)</h3><p>Kurukshetra University · NIELIT</p></div>
+        <div class="tl-year">2022</div>
+        <p class="tl-text">Completed my B.A. in Mathematics (84.7%) and NIELIT O-Level (S grade in Python) in the same year, qualified as a certified trainer and started teaching.</p>
       </article>
     </div>
   </div>
@@ -522,6 +515,7 @@
   <button type="button" class="lb-next" aria-label="Next photo"><svg><use href="#i-right"/></svg></button>
 </div>
 
-<script src="assets/main.js?v=20"></script>
+<script src="assets/main.js?v=21"></script>
+<script type="module" src="assets/avatar.js?v=1"></script>
 </body>
 </html>
