@@ -12,9 +12,10 @@
 - Government-selected trainer for one-week Python & AI bootcamps at six Kendriya Vidyalayas under PM SHRI (2024–25).
 - Special Guest Speaker, State Level NSS Camp, Department of Higher Education, Haryana (June 2026) — trained 200+ volunteers on deepfakes, voice cloning and digital financial fraud.
 - Chief Guest & Keynote Speaker, CBSE Computational Thinking & AI Workshop, Aryan International School, Kaithal (July 2026) — trained 40+ educators.
+- MyGov Campus Ambassador (Ministry of Electronics & IT, Government of India), Kaithal, since November 2026; runs Yuva Samvad sessions on Digital India and cyber safety.
 - India AI Impact Buildathon 2026 (GUVI HCL, India AI Impact Summit) — Round 2 qualifier among 40,000+ participants.
 - Dynamic Educator & Creative Mind Award, Zed-King Group of Institutions (June 2026).
-- Credentials: Google Certified Educator Level 2; NIELIT Training of Trainers (Emerging Technologies); NIELIT O-Level (S-Grade in Python); NIELIT A-Level (IT, AI specialisation): all exams cleared, major project in progress; Google Ads certifications; Ethical Hacking workshop, IIT Delhi; PTE Academic 81 overall.
+- Credentials: Microsoft Applied Skills (AI agents in Microsoft Foundry, 2026); Google Certified Educator Level 2; NIELIT Training of Trainers (Emerging Technologies); NIELIT O-Level (S-Grade in Python); NIELIT A-Level (IT, AI specialisation): all exams cleared, major project in progress; Google Ads certifications; Ethical Hacking workshop, IIT Delhi; PTE Academic 81 overall.
 - Education: MCA (in progress), Kurukshetra University; B.A. Mathematics, Kurukshetra University (84.7%).
 - Skills: Python, machine learning (scikit-learn, TensorFlow/Keras, OpenCV, Pandas), JavaScript, Flask, Node.js, generative AI & LLM integration, AI agents, prompt engineering, SEO/AEO/GEO, UI/UX, cyber security awareness, Arduino/IoT.
 
