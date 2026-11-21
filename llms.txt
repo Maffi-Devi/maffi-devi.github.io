@@ -1,6 +1,6 @@
 # Maffi Bhall
 
-> Maffi Bhall (also known as Maffi Devi) is an AI web engineer from Kaithal, Haryana, India. She is the founder and lead developer of A&N Web Services, the creator of the AI scam-protection app DigitalKawach, and an AI and cyber security trainer who has mentored 2,000+ students.
+> Maffi Bhall (also known as Maffi Devi) is an AI engineer from Kaithal, Haryana, India. She is the founder and lead developer of A&N Web Services, the creator of the AI scam-protection app DigitalKawach, and an AI and cyber security trainer who has mentored 2,000+ students.
 
 ## Key facts
 - Professional name: Maffi Bhall. Name on certificates and degrees: Maffi Devi.
@@ -14,17 +14,18 @@
 - Chief Guest & Keynote Speaker, CBSE Computational Thinking & AI Workshop, Aryan International School, Kaithal (July 2026) — trained 40+ educators.
 - India AI Impact Buildathon 2026 (GUVI HCL, India AI Impact Summit) — Round 2 qualifier among 40,000+ participants.
 - Dynamic Educator & Creative Mind Award, Zed-King Group of Institutions (June 2026).
-- Credentials: Google Certified Educator Level 2; NIELIT Training of Trainers (Emerging Technologies); NIELIT O-Level (S-Grade in Python); Google Ads certifications; Ethical Hacking workshop, IIT Delhi; PTE Academic 81 overall.
+- Credentials: Google Certified Educator Level 2; NIELIT Training of Trainers (Emerging Technologies); NIELIT O-Level (S-Grade in Python); NIELIT A-Level (IT, AI specialisation): all exams cleared, major project in progress; Google Ads certifications; Ethical Hacking workshop, IIT Delhi; PTE Academic 81 overall.
 - Education: MCA (in progress), Kurukshetra University; B.A. Mathematics, Kurukshetra University (84.7%).
-- Skills: Python, JavaScript, Flask, Node.js, generative AI & LLM integration, AI agents, prompt engineering, SEO/AEO/GEO, UI/UX, cyber security awareness, Arduino/IoT.
+- Skills: Python, machine learning (scikit-learn, TensorFlow/Keras, OpenCV, Pandas), JavaScript, Flask, Node.js, generative AI & LLM integration, AI agents, prompt engineering, SEO/AEO/GEO, UI/UX, cyber security awareness, Arduino/IoT.
 
 ## Projects
+- KrishiMitra — NIELIT A-Level AI project: crop recommendation (7 classifiers compared, 99.5% test accuracy), leaf disease detection over 19 classes (MobileNetV2 transfer learning, 91.1%), Hindi/English farming chatbot; models run in the browser with TensorFlow.js: https://nitubhall-krishimitra.static.hf.space
+- AI Blogging Agent for A&N Web Services — publishes one researched post a day since October 2026; each post must pass a rule validator and an independent AI fact-check review before it goes live (Claude Code, Node.js, SerpApi, Blogger API, GitHub Actions): https://anwebservices.blogspot.com/
 - DigitalKawach — AI scam protection app: https://digitalkawach.com
 - Sun Rise Sr. Sec. School, Kaithal — official website of a CBSE school (client project): https://sunriseschoolkaithal.in
 - Zed-King Institute of Fire & Safety — currently building the website and handling all SEO: https://zedkingfire.com
 - Autonomous multi-agent SEO engine (built for Zed-King Institute of Fire & Safety and A&N Web Services) — Groq LLaMA 3.3, SerpApi, Pexels, Blogger API, GitHub Actions; 6 articles/day.
 - EduTrack — Flask student performance analyzer with AI tutor: https://maffi.pythonanywhere.com
-- Haryana Student Career Guide (bilingual): https://github.com/Maffi-Devi/Haryana-Student-Career-Guide
 
 ## Links
 - Portfolio: https://maffi-devi.github.io/
