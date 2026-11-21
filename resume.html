@@ -13,10 +13,10 @@
   chrome --headless --no-pdf-header-footer --print-to-pdf=assets/Maffi_Bhall_Resume.pdf resume.html
 -->
 <style>
-  @page { size: A4; margin: 9mm 13mm; }
+  @page { size: A4; margin: 8mm 12mm; }
   * { box-sizing: border-box; margin: 0; padding: 0; }
   html { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
-  body { font-family: 'Segoe UI', Calibri, Arial, Helvetica, sans-serif; font-size: 9.2pt; line-height: 1.32; color: #1a2233; background: #fff; }
+  body { font-family: 'Segoe UI', Calibri, Arial, Helvetica, sans-serif; font-size: 8.9pt; line-height: 1.24; color: #1a2233; background: #fff; }
   a { color: inherit; text-decoration: none; }
   .page { max-width: 184mm; margin: 0 auto; }
 
@@ -28,15 +28,15 @@
   .contact a { color: #0a2150; }
   .aka { font-size: 8.6pt; color: #5a6478; margin-top: 2pt; }
 
-  h2 { font-size: 9.8pt; text-transform: uppercase; letter-spacing: .07em; color: #0a2150; border-bottom: .6pt solid #b9c2d3; padding-bottom: 1.5pt; margin: 6pt 0 3pt; }
+  h2 { font-size: 9.8pt; text-transform: uppercase; letter-spacing: .07em; color: #0a2150; border-bottom: .6pt solid #b9c2d3; padding-bottom: 1.5pt; margin: 5pt 0 2.5pt; }
   p { margin: 0; }
   ul { margin: 2pt 0 0 12pt; }
-  li { margin-bottom: 1pt; }
+  li { margin-bottom: .5pt; }
 
   .skills { display: grid; grid-template-columns: 96pt 1fr; gap: 1.5pt 8pt; }
   .skills dt { font-weight: 600; }
 
-  .entry { margin-bottom: 4pt; break-inside: avoid; }
+  .entry { margin-bottom: 3pt; break-inside: avoid; }
   .entry:last-child { margin-bottom: 0; }
   .row { display: flex; justify-content: space-between; align-items: baseline; gap: 12pt; }
   .row b { font-size: 10pt; }
@@ -56,7 +56,7 @@
 
 <header>
   <h1>Maffi Bhall</h1>
-  <p class="title">AI Web Engineer | Founder &amp; Lead Developer, A&amp;N Web Services</p>
+  <p class="title">AI Engineer | Machine Learning &amp; LLM Agents | Founder, A&amp;N Web Services</p>
   <p class="contact">
     <span>Kaithal, Haryana, India</span><span>+91 85700 53583</span><span><a href="mailto:bhallmaffi@gmail.com">bhallmaffi@gmail.com</a></span><br>
     <span><a href="https://maffi-devi.github.io/">maffi-devi.github.io</a></span><span><a href="https://www.linkedin.com/in/bhallmaffi/">linkedin.com/in/bhallmaffi</a></span><span><a href="https://github.com/Maffi-Devi">github.com/Maffi-Devi</a></span>
@@ -65,15 +65,15 @@
 </header>
 
 <h2>Summary</h2>
-<p>AI web engineer with more than four years of experience in software development and technical training. Founder of A&amp;N Web Services, delivering custom websites, web applications, SEO and AI automation for clients. Developer of DigitalKawach, an AI-based scam-detection app. Trained 2,000+ students in programming, AI and cyber security.</p>
+<p>AI engineer with four years in software development and technical training. I train and evaluate machine learning models (99.5% crop recommendation, 91.1% leaf-disease detection with MobileNetV2), build LLM agents that run in production every day with automated quality checks, and ship the web apps around them. Founder of A&amp;N Web Services; AI and programming instructor to 2,000+ students.</p>
 
 <h2>Technical Skills</h2>
 <dl class="skills">
   <dt>Languages</dt><dd>Python, JavaScript (ES6+), C, C++, SQL, HTML5, CSS3</dd>
-  <dt>Backend and tools</dt><dd>Flask, Node.js, REST APIs, OAuth, Git, GitHub Actions, Render</dd>
-  <dt>AI</dt><dd>LLM integration (Groq, Gemini, Claude, OpenAI), AI agents, prompt engineering</dd>
-  <dt>SEO and marketing</dt><dd>Technical SEO, AEO, GEO, schema markup, Google Search Console, Google Ads</dd>
-  <dt>IoT and design</dt><dd>Arduino, PlatformIO, sensors and microcontrollers; Figma, UI/UX design</dd>
+  <dt>Backend and deploy</dt><dd>Flask, Node.js, REST APIs, OAuth, Git, GitHub Actions, Docker, Hugging Face Spaces, Render</dd>
+  <dt>Machine learning</dt><dd>scikit-learn, TensorFlow / Keras, transfer learning (MobileNetV2), OpenCV, NLTK, Pandas, Seaborn, R</dd>
+  <dt>LLMs and agents</dt><dd>Claude, Groq / LLaMA, Gemini, OpenAI, Claude Code, AI agents, LLM-as-reviewer checks, prompt engineering</dd>
+  <dt>Web, SEO and IoT</dt><dd>Technical SEO, schema markup, Google Search Console; Arduino, PlatformIO</dd>
 </dl>
 
 <h2>Experience</h2>
@@ -81,34 +81,31 @@
   <div class="row"><span><b>Founder &amp; Lead Developer</b>, A&amp;N Web Services, Kaithal</span><span class="when">Jan 2026 – Present</span></div>
   <ul>
     <li>Design, develop and deliver all client projects: custom websites, web applications, databases and admin dashboards.</li>
-    <li>Developed and released DigitalKawach, an AI-based scam-detection app.</li>
+    <li>Built an AI blogging agent that researches, writes and publishes one post a day with no manual step; a rule validator and an independent AI fact-check review gate every post.</li>
     <li>Build chatbots, voice assistants and workflow automation for client businesses.</li>
-    <li>Manage technical SEO, AEO/GEO and Google Ads for clients; the studio holds a 5.0 Google rating from 29 reviews.</li>
+    <li>Technical SEO for clients; the studio holds a 5.0 Google rating from 29 reviews.</li>
   </ul>
 </div>
 <div class="entry">
-  <div class="row"><span><b>AI Instructor</b>, Zed-King Group of Institutions, Kaithal</span><span class="when">Jul 2024 – Present</span></div>
+  <div class="row"><span><b>AI &amp; Programming Instructor</b>, Zed-King Group of Institutions, Kaithal</span><span class="when">Jul 2024 – Present</span></div>
   <ul>
-    <li>Teach generative AI and prompt engineering; designed the AI curriculum for technical and non-technical learners.</li>
+    <li>Teach machine learning basics, generative AI, prompt engineering and AI projects in Python, alongside programming classes; designed the AI curriculum.</li>
     <li>Built the institute's multi-agent SEO content pipeline, which publishes six articles a day.</li>
-  </ul>
-</div>
-<div class="entry">
-  <div class="row"><span><b>Digital &amp; Social Media Manager</b>, Zed-King Group of Institutions, Kaithal</span><span class="when">Jan 2023 – Present</span></div>
-  <ul>
-    <li>Grew the institute's organic social media audience to more than 12,000 followers through content, video and campaigns.</li>
   </ul>
 </div>
 <div class="entry">
   <div class="row"><span><b>Programming &amp; IoT Instructor</b>, Zed-King Group of Institutions, Kaithal</span><span class="when">Jul 2022 – Present</span></div>
   <ul>
-    <li>Taught Python, C, C++, HTML, CSS, JavaScript and cyber security to more than 2,000 students.</li>
+    <li>Teach Python, C, C++, HTML, CSS, JavaScript and cyber security; more than 2,000 students trained. Also manage the institute&#39;s social media (12,000+ followers).</li>
     <li>Supervised Arduino-based student projects: smart home, smart city, ultrasonic radar and automated waste management.</li>
     <li>Conducted 50+ workshops and bootcamps, including Python and AI bootcamps at six Kendriya Vidyalayas under PM SHRI.</li>
   </ul>
 </div>
 
 <h2>Projects</h2>
+<div class="entry">
+  <p><b>KrishiMitra</b> (NIELIT A-Level AI project, <a href="https://nitubhall-krishimitra.static.hf.space">live demo</a>): crop recommendation (7 classifiers compared, 99.5% test accuracy), leaf-disease detection over 19 classes (MobileNetV2 transfer learning 91.1% vs 74.6% custom CNN), Hindi/English chatbot (TF-IDF + logistic regression). Models exported to TensorFlow.js and run in the browser.</p>
+</div>
 <div class="entry">
   <p><b>DigitalKawach</b> (<a href="https://digitalkawach.com">digitalkawach.com</a>): AI-based scam detection for SMS, calls, links, WhatsApp and email using a rule engine, LLM analysis (Groq) and VirusTotal URL reputation. Flask API with Gmail OAuth, deployed on Render.</p>
 </div>
@@ -119,13 +116,14 @@
   <p><b>EduTrack</b> (<a href="https://maffi.pythonanywhere.com">maffi.pythonanywhere.com</a>): Flask application for student performance analysis with PDF reports and an AI tutor.</p>
 </div>
 <div class="entry">
-  <p><b>Client websites:</b> Zed-King Institute of Fire &amp; Safety (website and SEO, ongoing); Haryana Student Career Guide.</p>
+  <p><b>Client website:</b> Zed-King Institute of Fire &amp; Safety (website and local SEO across 23 districts).</p>
 </div>
 
 <h2>Education</h2>
 <div class="entry">
   <div class="row"><span><b>Master of Computer Applications (MCA)</b>, Kurukshetra University</span><span class="when">2024 – 2026</span></div>
   <div class="row"><span><b>B.A. Mathematics</b>, Indira Gandhi Mahila Mahavidyalaya, Kurukshetra University (84.7%)</span><span class="when">2019 – 2022</span></div>
+  <div class="row"><span><b>A-Level (IT), AI specialisation</b>, NIELIT (all exams cleared; major project in progress)</span><span class="when">Pursuing</span></div>
   <div class="row"><span><b>O-Level (IT)</b>, NIELIT (78.8%, S grade in Python)</span><span class="when">2021 – 2022</span></div>
 </div>
 
@@ -138,7 +136,7 @@
   </ul>
   <ul>
     <li>Google Ads: Shopping, Creative and Measurement</li>
-    <li>IoT Technologies Workshop, NIELIT</li>
+    <li>Microsoft Applied Skills: AI agents in Microsoft Foundry</li>
     <li>PTE Academic: overall score 81</li>
   </ul>
 </div>
@@ -147,8 +145,7 @@
 <ul>
   <li><b>India AI Impact Buildathon 2026</b> (GUVI, HCL): Round 2 qualifier with DigitalKawach among 40,000+ participants.</li>
   <li><b>Dynamic Educator &amp; Creative Mind Award</b>, Zed-King Group of Institutions (Jun 2026).</li>
-  <li><b>Chief Guest and Keynote Speaker</b>, CBSE Computational Thinking &amp; AI Workshop, Kaithal (Jul 2026).</li>
-  <li><b>Special Guest Speaker</b>, State Level NSS Camp, Dept. of Higher Education, Haryana (Jun 2026); trained 200+ volunteers.</li>
+  <li><b>Speaker:</b> keynote, CBSE Computational Thinking &amp; AI Workshop (Jul 2026); State Level NSS Camp, Dept. of Higher Education, Haryana (Jun 2026).</li>
 </ul>
 
 </div>
