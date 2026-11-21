@@ -204,10 +204,22 @@ a.w-img:hover img, .w-card:hover .w-img img { transform: scale(1.05); filter: no
 .w-more h3 { font-size: clamp(1.5rem, 2.4vw, 2rem); font-weight: 500; }
 .w-more p { color: var(--muted); }
 
+/* wide but short screens (no pinning): show the cards as a two-column grid */
+@media (min-width: 900px) {
+  .work:not(.pinned) .work-track { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); margin: 0 var(--gutter); border-left: 1px solid var(--line); }
+  .work:not(.pinned) .w-card, .work:not(.pinned) .w-card:first-child { width: auto; margin: 0; border-left: 0; border-bottom: 1px solid var(--line); }
+  .work:not(.pinned) .w-card.flip .w-img { order: 0; }
+  .work:not(.pinned) .w-card.flip .w-top { margin-top: 0; }
+  .work:not(.pinned) .w-more { width: auto; margin: 0; }
+}
+
 /* desktop: pinned horizontal scroll */
 @media (min-width: 900px) and (prefers-reduced-motion: no-preference) {
   .work.pinned .work-pin { position: sticky; top: 0; height: 100vh; overflow: hidden; display: flex; flex-direction: column; justify-content: center; }
-  .work.pinned .work-head { padding-top: 70px; }
+  .work.pinned .work-head { padding-top: 76px; padding-bottom: 20px; }
+  .work.pinned .w-card { padding-top: 24px; padding-bottom: 22px; gap: 16px; }
+  .work.pinned .w-img { aspect-ratio: auto; height: clamp(150px, 30vh, 270px); }
+  .work.pinned .w-diagram svg { width: auto; height: 100%; max-width: 100%; }
 }
 
 /* ═════════════ DEMO ═════════════ */

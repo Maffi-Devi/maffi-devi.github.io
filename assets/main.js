@@ -80,7 +80,7 @@
   /* ── Scroll-driven: header state, timeline progress, pinned horizontal work ── */
   const timeline = $('#timeline'), tlFill = $('.tl-line i', timeline), tlItems = $$('.tl-item', timeline);
   const work = $('#work'), track = $('#workTrack'), contact = $('#contact');
-  const wide = matchMedia('(min-width: 900px)');
+  const wide = matchMedia('(min-width: 900px) and (min-height: 640px)');
   let travel = 0;
 
   const layoutWork = () => {
